@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+</h:head>
+
+<p:dataTable id="checkboxDT"  value="#{ commandeListBean.commandesBuyed }" 
+ var="order" 
+ selection="#{commandeListBean.orderSelected}"   
+ rendered="#{! empty commandeListBean.commandesBuyed }"
+ emptyMessage="Aucune commande disponible"
+ rows="13"
+ rowKey="#{order.id}"
+ paginatorPosition="bottom"
+ paginatorAlwaysVisible= "false" >
+
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.customer.nom}" filterMatchMode="contains">
+            <f:facet name="header">Client</f:facet> #{order.customer.prenom}  #{order.customer.nom}    </p:column>
+            
+           
+           
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.designation}" filterMatchMode="contains">
+            <f:facet name="header">Designation</f:facet>#{order.designation}</p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.date}" filterMatchMode="contains" >
+            <f:facet name="header">Date</f:facet>#{order.date}</p:column>
+           
+           
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.modePaiement}" filterMatchMode="contains">
+            <f:facet name="header">Mode Paiement</f:facet>#{order.modePaiement}</p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.statutPaiement}" filterMatchMode="contains">
+            <f:facet name="header">Statut Paiement</f:facet>#{order.statutPaiement}</p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.modeLivraison}" filterMatchMode="contains">
+            <f:facet name="header">Mode Livraison</f:facet>#{order.modeLivraison}</p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.statutLivraison}" filterMatchMode="contains">
+            <f:facet name="header">Statut Livraison</f:facet>#{order.statutLivraison}</p:column>
+              
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.quantité}" filterMatchMode="contains">
+            <f:facet name="header">Quantité</f:facet>#{order.quantité}</p:column>
+            
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.montant}" filterMatchMode="contains">
+            <f:facet name="header">Montant</f:facet>#{order.montant}FCFA</p:column>
+            
+	          <f:facet name="footer">
+            <!--<p:commandButton process="checkboxDT" update=":form:multiOrder" icon="ui-icon-search" value="" oncomplete="PF('multiCarDialog').show()" />-->
+        </f:facet>
+            </p:dataTable>
+ 
+
+</html>

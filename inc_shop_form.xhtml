@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+	
+	
+<p:outputLabel for="dateShop"> Date </p:outputLabel>
+<p:inputText id="dateShop"  value= "#{shopBean.shop.date}" required="" size="30" maxlength="30" disabled="true" />
+<p:message id="dateMessage" for="dateShop" errorClass="erreur" label="DateShop" requiredMessage="#{msg['shop.date']}" />	        
+	
+	<br />
+
+<p:outputLabel for="descriptionShop"> Description </p:outputLabel>
+<p:inputText id="descriptionShop"  value= "#{shopBean.shop.description}" required="" size="30" maxlength="30" />
+<p:message id="descriptionMessage" for="descriptionShop" errorClass="erreur" label="DescriptionShop" requiredMessage="#{msg['shop.description']}" />	        
+
+	<br />
+
+
+
+<p:outputLabel for="quantitéShop"> Quantité </p:outputLabel>
+<p:inputText id="quantitéShop"  value= "#{shopBean.shop.quantité}" required="" size="30" maxlength="30" />
+<p:message id="quantitéMessage" for="quantitéShop" errorClass="erreur" label="QuantitéShop" requiredMessage="#{msg['shop.quantité']}" />	        
+	
+	<br />
+</html>

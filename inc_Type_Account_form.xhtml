@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+	
+<p:outputLabel for="typeType_Account"> Type <span class="requis">*</span></p:outputLabel>
+<p:inputText id="typeType_Account"  value= "#{type_AccountBean.type_Account.type}" required="" size="30" maxlength="30" />
+<p:message id="typeMessage" for="typeType_Account" errorClass="erreur" label="TypeType_Account" requiredMessage="#{msg['type_Account.type']}" />	        
+
+<br />
+
+<p:outputLabel for="descriptionType_Account"> Description <span class="requis">*</span></p:outputLabel>
+<p:inputText id="descriptionType_Account"  value= "#{type_AccountBean.type_Account.description}" required="" size="30" maxlength="30" />
+<p:message id="descriptionMessage" for="descriptionType_Account" errorClass="erreur" label="DescriptionType_Account" requiredMessage="#{msg['type_Account.description']}" />	        
+
+
+
+</html>

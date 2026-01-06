@@ -1,0 +1,73 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+</h:head>
+
+<p:dataTable id="checkboxDT"  value="#{ deposit_BuyListBean.deposit_Buys }" 
+ var="deposit_Buy" 
+ 
+ rendered="#{! empty deposit_BuyListBean.deposit_Buys }"
+ emptyMessage="Aucun depot d'Achat effectué"
+ rows="10"
+ rowKey="#{deposit_Buy.id}"
+ paginatorPosition="bottom"
+ paginatorAlwaysVisible="false"
+ paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+ paginator="true"
+ style="margin-bottom:20px"
+ >
+ <f:facet name="{Exporters}">
+           
+           
+            <h:commandLink>
+            
+                <p:graphicImage value ="/images/icons/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="checkboxDT" fileName="depositBuys"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage value ="/images/icons/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="checkboxDT" fileName="deposit_Buys" />
+            </h:commandLink>
+        </f:facet>
+           <p:column style="width: 30px; text-align: center" filterBy="#{deposit_Buy.buy.commandes[0].customer.nom}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Client" /></f:facet><h:outputText value="#{deposit_Buy.buy.commandes[0].customer.nom} #{deposit_Buy.buy.commandes[0].customer.prenom}" /></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{deposit_Buy.date}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Date" /></f:facet><h:outputText value="#{deposit_Buy.date}" /></p:column>
+          
+           <p:column style="width: 30px; text-align: center" filterBy="#{deposit_Buy.date}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Date" /></f:facet><h:outputText value="#{deposit_Buy.date}" /></p:column>
+           
+            <p:column style="width: 30px; text-align: center" filterBy="#{deposit_Buy.amount_deposit}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Montant Remboursement" /></f:facet><h:outputText value="#{deposit_Buy.amount_deposit} FCFA" /></p:column>
+          
+           <p:column style="width: 30px; text-align: center" filterBy="#{deposit_Buy.buy.designation}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Designation Achat" /></f:facet><h:outputText value="#{deposit_Buy.buy.designation}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{deposit_Buy.buy.montant}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Montant Achat" /></f:facet><h:outputText value="#{deposit_Buy.buy.montant} FCFA" /></p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{deposit_Buy.buy.remaining}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Montant Credit" /></f:facet><h:outputText value="#{deposit_Buy.buy.remaining} FCFA" /></p:column>
+            
+            
+           <p:column style="width: 30px; text-align: center"><f:facet name="header"></f:facet> 
+            <p:commandButton  action="#{deposit_BuyListBean.detail(deposit_Buy)}" value="Detail" />
+             </p:column>   
+                           
+          
+	          <f:facet name="footer">
+            <!--<p:buyButton process="checkboxDT" update=":form:multibuy" icon="ui-icon-search" value="" oncomplete="PF('multiCarDialog').show()" />-->
+        </f:facet>
+           
+           
+          
+           
+                    </p:dataTable>
+</html>

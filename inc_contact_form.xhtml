@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+	
+	
+<p:outputLabel for="nomContact">Nom <span class="requis"></span></p:outputLabel>
+<p:inputText id="nomContact"  value= "#{contactBean.contact.nom}" required="" size="30" maxlength="30" />
+<p:message id="nomMessage" for="nomContact" errorClass="erreur" label="NomContact" requiredMessage="#{msg['contact.nom']}" />	        
+
+<br />
+
+<p:outputLabel for="prenomContact">Prenom <span class="requis"></span></p:outputLabel>
+<p:inputText id="prenomContact"  value= "#{contactBean.contact.prenom}" required="" size="30" maxlength="30" />
+<p:message id="prenomMessage" for="prenomContact" errorClass="erreur" label="PrenomContact" requiredMessage="#{msg['contact.prenom']}" />	        
+
+	<br />
+
+<p:outputLabel for="telephoneContact">Telephone <span class="requis">*</span></p:outputLabel>
+<p:inputText id="telephoneContact"  value= "#{contactBean.contact.telephone}" required="" size="30" maxlength="30" />
+<p:message id="telephoneMessage" for="telephoneContact" errorClass="erreur" label="TelephoneContact" requiredMessage="#{msg['contact.telephone']}" />	        
+	
+	<br />
+	
+<p:outputLabel for="professionContact">Profession <span class="requis"></span></p:outputLabel>
+<p:inputText id="professionContact"  value= "#{contactBean.contact.profession}" required="" size="30" maxlength="30" />
+<p:message id="professionMessage" for="professionContact" errorClass="erreur" label="ProfessionContact" requiredMessage="#{msg['contact.profession']}" />	        
+	
+	<br />
+<p:outputLabel for="emailContact">Email <span class="requis">*</span></p:outputLabel>
+<p:inputText id="emailContact"  value= "#{contactBean.contact.email}" required="" size="30" maxlength="30" />
+<p:message id="emailMessage" for="emailContact" errorClass="erreur" label="EmailContact" requiredMessage="#{msg['contact.email']}" />	        
+	
+<br />
+<p:outputLabel for="siege_socialeContact">Siege_sociale <span class="requis"></span></p:outputLabel>
+<p:inputText id="siege_socialeContact"  value= "#{contactBean.contact.siege_sociale}" required="" size="30" maxlength="30" />
+<p:message id="siege_socialeMessage" for="siege_socialeContact" errorClass="erreur" label="Siege_socialeContact" requiredMessage="#{msg['contact.siege_sociale']}" />	        
+	
+<br />
+
+
+</html>

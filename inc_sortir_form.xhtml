@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+	
+<p:outputLabel for="dateSortir">Date <span class="requis"></span></p:outputLabel>
+<p:inputText id="dateSortir"  value= "#{sortirBean.sortir.date}" required="" size="30" maxlength="30" disabled= "true" />
+<p:message id="dateMessage" for="dateSortir" errorClass="erreur" label="DateSortir" requiredMessage="#{msg['sortir.date']}" />	        
+
+<br />
+	
+<p:outputLabel for="nomSortir">Nom <span class="requis"></span></p:outputLabel>
+<p:inputText id="nomSortir"  value= "#{sortirBean.sortir.nom}" required="" size="30" maxlength="30" />
+<p:message id="nomMessage" for="nomSortir" errorClass="erreur" label="NomSortir" requiredMessage="#{msg['sortir.nom']}" />	        
+
+<br />
+
+<p:outputLabel for="quantitéSortir">Quantité <span class="requis"></span></p:outputLabel>
+<p:inputText id="quantitéSortir"  value= "#{sortirBean.sortir.quantité}" required="" size="30" maxlength="30" />
+<p:message id="quantitéMessage" for="quantitéSortir" errorClass="erreur" label="QuantitéSortir" requiredMessage="#{msg['sortir.quantité']}" />	        
+
+	<br />
+
+
+</html>

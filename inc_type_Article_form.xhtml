@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+	
+<p:outputLabel for="nom2Type_Article"> Nom </p:outputLabel>
+<p:inputText id="nom2Type_Article"  value= "#{type_ArticleBean.type_Article.nom2}" required="" size="30" maxlength="30" />
+<p:message id="nom2Message" for="nom2Type_Article" errorClass="erreur" label="Nom2Type_Article" requiredMessage="#{msg['type_Article.nom2']}" />	        
+
+<br />
+
+<p:outputLabel for="descriptionType_Article"> Description </p:outputLabel>
+<p:inputText id="descriptionType_Article"  value= "#{type_ArticleBean.type_Article.description}" required="" size="30" maxlength="30" />
+<p:message id="descriptionMessage" for="descriptionType_Article" errorClass="erreur" label="DescriptionType_Article" requiredMessage="#{msg['type-Article.description']}" />	        
+
+
+
+</html>

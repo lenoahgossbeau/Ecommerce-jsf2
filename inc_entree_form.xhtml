@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"> 
+	
+
+<p:outputLabel for="dateEntree"> Date </p:outputLabel>
+<p:inputText id="dateEntree"  value= "#{entreeBean.entree.date}" required="" size="30" maxlength="30" disabled="true"/>
+<p:message id="dateMessage" for="dateEntree" errorClass="erreur" label="DateEntree" requiredMessage="#{msg['entree.date']}" />	        
+
+	<br />	
+<p:outputLabel for="nomEntree"> Nom </p:outputLabel>
+<p:inputText id="nomEntree"  value= "#{entreeBean.entree.nom}" required="" size="30" maxlength="30" />
+<p:message id="nomMessage" for="nomEntree" errorClass="erreur" label="NomEntree" requiredMessage="#{msg['entree.nom']}" />	        
+
+<br />
+
+
+
+
+
+
+</html>

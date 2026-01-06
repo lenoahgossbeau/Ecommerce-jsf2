@@ -1,0 +1,84 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+</h:head>
+
+<p:dataTable id="radioDT"  value="#{ buyListBean.buys }" 
+ var="buy" 
+ selection="#{buyListBean.buySelected}" 
+ 
+ rendered="#{! empty buyListBean.buys }"
+ emptyMessage="Aucun Achat effectué"
+ rows="10"
+ rowKey="#{buy.id}"
+ paginatorPosition="bottom"
+ paginatorAlwaysVisible="false"
+ paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+ paginator="true"
+ style="margin-bottom:20px"
+ >
+ <f:facet name="{Exporters}">
+           
+            <h:commandLink>
+            
+                <p:graphicImage value ="/images/icons/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="radioDT" fileName="buys"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage value ="/images/icons/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="radioDT" fileName="buys" />
+            </h:commandLink>
+        </f:facet>
+            <p:column style="width: 30px; text-align: center" filterBy="#{buy.commandes[0].customer.nom}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Client" /></f:facet><h:outputText value="#{buy.commandes[0].customer.nom} #{buy.commandes[0].customer.prenom}"/>  </p:column>
+            
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{buy.status_Buy.strCode}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Status_Buy" /></f:facet><h:outputText value="#{buy.status_Buy.strCode}"/>  </p:column>
+                      
+            <p:column style="width: 30px; text-align: center" filterBy="#{buy.type_Buy.strCode}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Type_Buy" /></f:facet><h:outputText value="#{buy.type_Buy.strCode}"/>  </p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{buy.date2}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Date" /></f:facet><h:outputText value="#{buy.date2}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{buy.designation}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Designation" /></f:facet><h:outputText value="#{buy.designation}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{buy.quantité}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Quantité" /> </f:facet><h:outputText value="#{buy.quantité}" /></p:column>
+           
+            <p:column style="width: 30px; text-align: center" filterBy="#{buy.montant}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Montant Achat" /></f:facet><h:outputText value="#{buy.montant} FCFA" /></p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{buy.amount_deposit}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Montant Versé" /></f:facet><h:outputText value="#{buy.amount_deposit} FCFA" /></p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{buy.remaining}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Montant Credit" /></f:facet><h:outputText value="#{buy.remaining} FCFA" /></p:column>
+            
+          
+                           
+              <p:column selectionMode="single" style="width:16px;text-align:center"> 
+           <f:facet name="header">Selection </f:facet>
+          
+          </p:column>                 
+             
+             <p:column style="width: 30px; text-align: center"><f:facet name="header"></f:facet> 
+            <p:commandButton  action="#{buyListBean.detail(buy)}" value="Detail" />
+             </p:column>   
+	          <f:facet name="footer">
+           
+        </f:facet>
+           
+           
+          
+           
+                    </p:dataTable>
+</html>

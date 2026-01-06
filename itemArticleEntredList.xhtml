@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+</h:head>
+
+<p:dataTable  
+   value="#{ articleListBean.articlesEntred }"
+   var="article"
+   rendered="#{! empty articleListBean.articlesEntred }"
+ selection="#{articleListBean.articleSelected}"   
+ emptyMessage="Aucun Article disponible"
+ rows="13"
+ rowKey="#{article.id}"
+ paginatorPosition="bottom"
+ paginatorAlwaysVisible= "false"
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ >
+ <p:column style="width: 30px; text-align: center" filterBy="#{article.fournisseur.nom1}" filterMatchMode="contains">
+            <f:facet name="header">Fournisseur</f:facet>#{article.fournisseur.nom1}  </p:column>
+                  
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.code}" filterMatchMode="contains">
+           <f:facet name="header">Code</f:facet>#{article.code}</p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.nom}" filterMatchMode="contains">
+           <f:facet name="header">Nom</f:facet>#{article.nom}</p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.description}" filterMatchMode="contains">
+           <f:facet name="header">Description </f:facet>#{article.description}</p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.prix}" filterMatchMode="contains">
+           <f:facet name="header">Prix </f:facet>#{article.prix}</p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.disponible}" filterMatchMode="contains">
+           <f:facet name="header">Disponible</f:facet>#{article.disponible}</p:column>
+          <p:column selectionMode="multiple" style="width:16px;text-align:center"> 
+           <f:facet name="header">Selection </f:facet>
+          
+          </p:column>
+            </p:dataTable>
+ 
+
+</html>

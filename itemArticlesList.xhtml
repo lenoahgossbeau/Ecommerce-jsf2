@@ -1,0 +1,89 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+</h:head>
+
+  <p:dataTable id="articlelist"
+  value="#{ articleListBean.articles }"
+   var="article"
+   rendered="#{! empty articleListBean.articles }"
+  selection="#{articleListBean.articleSelected}" 
+   editable="true"
+   
+   reflow="true"
+ emptyMessage="Aucun Article disponible"
+ rows="10"
+ rowKey="#{article.id}"
+ paginatorPosition="bottom"
+ paginatorAlwaysVisible="false"
+ paginatorTemplate= "{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+ paginator="true"
+ style="margin-bottom:20px"
+ 
+ 
+ >
+
+	 <p:ajax event="rowEdit" listener="#{articleListBean.onRowEdit}" update="articlelist"/>
+  <!-- <p:ajax event="cellEdit"  listener="#{articleListBean.onCellEdit}" update="articlelist"/>-->
+ <f:facet name="{Exporters}">
+           
+            <h:commandLink>
+            
+                <p:graphicImage value ="/images/icons/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="articlelist" fileName="articles"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage value ="/images/icons/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="articlelist" fileName="articles" />
+            </h:commandLink>
+        </f:facet>
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.fournisseur.nom1}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Fournisseur" /></f:facet><h:outputText value="#{article.fournisseur.nom1}"/>  </p:column>
+              
+              <p:column style="width: 30px; text-align: center" filterBy="#{article.type_Article.type}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Type d'article" /></f:facet><h:outputText value="#{article.type_Article.type}"/>  </p:column>
+              
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.code}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Code" /></f:facet><h:outputText value="#{article.code}"/></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.nom}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Nom" /></f:facet><h:outputText value="#{article.nom}"/></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.description}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Description" /></f:facet><h:outputText value="#{article.description}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{article.prixAchat} FCFA" filterMatchMode="contains" rendered="#{configurationBean.module_configuration}">
+           <f:facet name="header"><h:outputText value="Prix d'achat" /></f:facet><h:outputText value="#{article.prixAchat}" /></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.prix} FCFA" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Prix" /></f:facet><h:outputText value="#{article.prix}" /></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.disponible}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Disponibilite" /></f:facet><h:outputText value="#{article.disponible}" /></p:column>
+            <p:column   style="width: 30px; text-align: center" filterBy="#{articleListBean.quantite}" filterMatchMode="contains" >
+               <f:facet name="header"><h:outputText value="Quantité" /></f:facet>
+              <p:cellEditor >
+                  <f:facet name="output"><h:outputText value="#{articleListBean.quantite}" /></f:facet>
+                  <f:facet name="input"><p:inputText id="modelInput" value="#{articleListBean.quantite}"/></f:facet>
+              </p:cellEditor>
+          </p:column>
+          
+          <p:column selectionMode="multiple" style="width:16px;text-align:center"> 
+           <f:facet name="header">Selection </f:facet>
+          
+          </p:column>
+          <p:column style="width: 30px; text-align: center"><f:facet name="header"><h:outputText value="Detail" /></f:facet> 
+          <p:commandButton  action="#{articleListBean.detail(article)}" value="Detail" />
+             </p:column> 
+              <p:column style="width:32px">
+      <p:rowEditor/>
+  </p:column>
+    </p:dataTable>
+    
+</html>

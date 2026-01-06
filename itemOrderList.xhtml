@@ -1,0 +1,82 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+	<h:head>
+	<script name="jquery/jquery.js" library="primefaces"></script>
+</h:head>
+
+<p:dataTable id="checkboxDT"  value="#{ commandeListBean.commandes }" 
+ var="order" 
+ selection="#{commandeListBean.orderSelected}"   
+ rendered="#{! empty commandeListBean.commandes }"
+ emptyMessage="Aucune commande disponible"
+ rows="10"
+ rowKey="#{order.id}"
+ paginatorPosition="bottom"
+ paginatorAlwaysVisible= "false"
+ paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+ paginator="true" 
+ style="margin-bottom:20px"
+ >
+ <f:facet name="{Exporters}">
+           
+            <h:commandLink>
+            
+                <p:graphicImage value ="/images/icons/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="checkboxDT" fileName="commandes"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage value ="/images/icons/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="checkboxDT" fileName="commandes" />
+            </h:commandLink>
+        </f:facet>
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.customer.nom}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Client" /></f:facet><h:outputText value="#{order.customer.prenom}  #{order.customer.nom}" />     </p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.designation}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Designation" /></f:facet><h:outputText value="#{order.designation}" /></p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.date}" filterMatchMode="contains" >
+            <f:facet name="header"><h:outputText value="Date" /></f:facet><h:outputText value="#{order.date}" /></p:column>
+           
+           
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.modePaiement}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Mode Paiement" /></f:facet><h:outputText value="#{order.modePaiement}" /></p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.statutPaiement}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Statut Paiement" /></f:facet><h:outputText value="#{order.statutPaiement}" /></p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.modeLivraison}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Mode Livraison" /></f:facet><h:outputText value="#{order.modeLivraison}" /></p:column>
+            
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.statutLivraison}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Statut Livraison" /></f:facet><h:outputText value="#{order.statutLivraison}" /></p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.quantité}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Quantité" /></f:facet><h:outputText value="#{order.quantité}" /></p:column>
+            
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{order.montant}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Montant" /></f:facet><h:outputText value="#{order.montant}" /></p:column>
+            
+              <p:column style="width: 30px; text-align: center"><f:facet name="header"></f:facet> 
+            <p:commandButton  action="#{commandeListBean.detail(order)}" value="Detail" />
+             </p:column>   
+                                                 
+             <p:column selectionMode="multiple" style="width:16px;text-align:center"> 
+           <f:facet name="header">Selection </f:facet>
+          
+          </p:column>
+            
+	          <f:facet name="footer">
+            <!--<p:commandButton process="checkboxDT" update=":form:multiOrder" icon="ui-icon-search" value="" oncomplete="PF('multiCarDialog').show()" />-->
+        </f:facet>
+            </p:dataTable>
+ 
+
+</html>
