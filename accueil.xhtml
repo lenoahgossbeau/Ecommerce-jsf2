@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+        <meta charset ="utf-8" />
+        <title> eITAC | Vente et Exposition en ligne   </title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css"  />
+        <f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg"/> 
+    </h:head>
+    <h:body>
+       
+   <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menuOnline.xhtml"  />
+                       
+   
+   </h:form>
+   
+    <fieldset> <h1 align="center">Bienvenue sur eITAC!!! </h1>
+    			
+    </fieldset>
+            <h:form id="article">
+             
+          <fieldset>
+          	<div id="use" padding="bottom">
+                    <legend>Choix du type de l'article</legend>
+     				
+                        
+             <div id="Type_Article" align="left">
+                       <p:outputLabel for="listeType_Articles" value="Selectioner le Type article" />
+        <p:selectOneMenu id="listeType_Articles" value="#{articlesBean.codeType_Article}" style="width:125px">
+             <f:selectItems value = "#{ type_ArticleBean.type_Articles.entrySet()}"  var ="type_Article" 
+                          filterBy="#{column.property}"
+                             itemValue="#{type_Article.key}" itemLabel="#{type_Article.value.type}" />
+        </p:selectOneMenu>
+                      <!--<h:selectOneListbox  value="#{ articlesBean.codeType_Article }"
+                        required="true" requiredMessage="vous devez choisir un type d'article"
+                          name="listeType_Articles" id="listeType_Articles"  filterBy="#{type_Article.id}"
+                          filterMatchMode="contains">
+                         <f:selectItems value = "#{ type_ArticleBean.type_Articles.entrySet()}"  var ="type_Article" 
+                          filterBy="#{column.property}"
+                             itemValue="#{type_Article.key}" itemLabel="#{type_Article.value.type}" />  
+                           
+                        
+                        </h:selectOneListbox>-->
+        
+                                              
+             </div>  
+             
+             <div id="Mon panier">
+             	<p:commandButton value="Vérifier mon Panier" action="#{articleListBean.monPanier}" align="right"/>
+             
+             
+             </div> 
+             
+        </div>
+         </fieldset>
+          
+ 
+  <fieldset>
+
+    <p:dataGrid var="article" value="#{articleListBean.articles}" columns="3" layout="grid"
+        rows="12" paginator="true" id="articles"
+        
+        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+         
+        <f:facet name="header">
+            Articles for Sale
+        </f:facet>
+ 
+        <p:panel header="#{article.id}" style="text-align:center">
+            <h:panelGrid columns="1" style="width:100%">
+                          
+ 
+                <h:outputText value="#{article.nom}" />
+ 
+                <p:commandLink  update=":article:articleDetail" oncomplete="PF('articleDialog').show()" title="View Detail">
+                    <h:outputText styleClass="pi pi-search" style="margin:0 auto;" value="detail"/>
+                    <f:setPropertyActionListener value="#{article}" target="#{articleListBean.article}" />
+                </p:commandLink>
+                
+                <h:commandButton value="Ajouter au Panier" action="#{articleListBean.ajouterPanier(article)}"/>
+               <!--   <p:selectBooleanCheckbox value="#{articleListBean.article.id}" itemLabel="Basic"/>-->
+            </h:panelGrid>
+        </p:panel>
+ 
+    </p:dataGrid>
+ 
+    <p:dialog header="Article Info" widgetVar="articleDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+        <p:outputPanel id="articleDetail" style="text-align:center;">
+            <p:panelGrid  columns="2" rendered="#{not empty articleListBean.article}" columnClasses="label,value">
+                <f:facet name="header">
+                    
+                </f:facet>
+                 
+                <h:outputText value="Id:" />
+                <h:outputText value="#{articleListBean.article.id}" />
+ 
+                <h:outputText value="code" />
+                <h:outputText value="#{articleListBean.article.code}" />
+             
+                <h:outputText value="nom" />
+                <h:outputText value="#{articleListBean.article.nom}" />
+                
+                <h:outputText value="description" />
+                <h:outputText value="#{articleListBean.article.description}" />
+                
+                <h:outputText value="prix" />
+                <h:outputText value="#{articleListBean.article.prix}" />
+            
+            	
+            </p:panelGrid>
+        </p:outputPanel>
+    </p:dialog>
+    
+     
+       </fieldset>        
+                       
+            </h:form>
+              <script>
+        	jQuery(document).ready(function(){
+        		/* 1 - Au lancement de la page, on cache le bloc d'éléments du formulaire correspondant aux fournisseurs existants */
+        		#("div#ancienFournisseur").hide();
+        		/* 2 - Au clic sur un des deux boutons radio "choixNouveauFournisseur", on affiche le bloc d'éléments correspondant (nouveau ou ancien fournisseur) */
+                jQuery('input[name=choixNouveauFournisseur]:radio').click(function(){
+                	#("div#nouveauFournisseur").hide();
+                	#("div#ancienFournisseur").hide();
+                    var divId = jQuery(this).val();
+                    #("div#"+divId).show();
+                });
+            });
+        </script>	
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>

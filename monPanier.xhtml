@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+	
+    <h:head>
+   
+        <meta charset="utf-8" />
+        <title>Liste des articles sélectionnés</title>
+        <h:outputStylesheet library= "default" name="css/ecommerce.css" />
+       
+    </h:head>
+    <h:body>
+     <p:messages globalOnly="true" infoClass="info" />
+    <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menuOnline.xhtml"  />
+                   
+   
+   </h:form >
+      
+       <fieldset> <h1 align="center">Liste des articles sélectionnés</h1></fieldset>
+        <div id="corps">
+        
+            <h:form id="form">
+              
+          
+           <p:outputLabel styleClass="erreur" rendered="#{ empty articleListBean.articleSelected }" value="Oupss! aucun article sélectionné."/>
+               
+                 <p:dataTable id="article"
+                 
+  value="#{ articleListBean.articleSelected }"
+   var="article"
+   rendered="#{! empty articleListBean.articleSelected }"
+  
+ emptyMessage="Aucun Article sélectionné"
+ 
+ paginatorPosition="bottom"
+ paginatorAlwaysVisible="false"
+ paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+ paginator="true"
+ style="margin-bottom:20px">
+ 
+          
+          <p:column style="width: 30px; text-align: center" >
+           <f:facet name="header"><h:outputText value="Nom" /></f:facet><h:outputText value="#{article.nom}"/></p:column>
+           
+          <p:column style="width: 30px; text-align: center">
+           <f:facet name="header"><h:outputText value="Description" /></f:facet><h:outputText value="#{article.description}" /></p:column>
+           
+          
+          <p:column style="width: 30px; text-align: center">
+           <f:facet name="header"><h:outputText value="Prix" /></f:facet><h:outputText value="#{article.prix} FCFA" />
+           </p:column>
+               
+           <p:column style="width: 30px; text-align: center"><f:facet name="header"></f:facet>
+          
+           <p:commandButton  update=":form:article" action="#{articleListBean.delete(article)}" value="Supprimer">
+            <p:confirm header="ConfirmationDelete" message="Merci de confirmer la suppression de votre ajout" icon="pi pi-exclamation-triangle" />
+          		
+           </p:commandButton>
+           
+           <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+           <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+           <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+    </p:confirmDialog>
+           
+           </p:column>
+          
+    </p:dataTable>
+    
+    	
+           <p:commandButton update=":form" style="width: 30px; text-align: center" id="btn_reset" value="Annuler" type="reset"><f:facet name="footer"></f:facet>
+           <p:confirm footer="ConfirmationReset" message="Merci de confirmer l'annulation de votre Panier" icon="pi pi-exclamation-triangle" />
+            </p:commandButton>
+            
+           <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+           <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+           <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+    </p:confirmDialog>
+           
+    
+		<p:commandButton style="width: 30px; text-align: center" id="btn_reset" value="Annuler" type="reset"><f:facet name="footer"></f:facet> value = "Confirmer la Commande" />
+		
+
+           </h:form>
+        </div>
+        
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+    
+  
+</html>
