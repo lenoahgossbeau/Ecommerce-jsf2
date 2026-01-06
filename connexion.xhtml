@@ -2,65 +2,36 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
     <h:head>
-    
         <meta charset ="utf-8" />
-        <title><ui:define name="title">GESMAG - Login</ui:define></title>
-        <h:outputStylesheet library="default" name="css/connexion.css"  />
-        <style type="text/css">
-        #footer{
-  background-color: #DCDCDC;
-  color: black;
-  position:fixed;
-  width: 100%;
-  bottom: 0;
-  text-align:center;
-  height: 1.5em;
-  font-weight: bold;
-}
-
-
-
-</style>
+        <title>Connexion</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css"  />
         <f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg"/> 
     </h:head>
-    <div id="images">
-    
-    
-   	<p:graphicImage value="/images/Stock Management.jpg"   height="45px"
-                         style="float:right" />
-                         <p:graphicImage value="/images/logoItac.jpg" width="8%" height="45px" 
-                         style="float:right" />
-</div>
-    <h:body style="background-image: url('${request.contextPath}/inc/ecommerce.jpg');" >
+    <h:body>
       <h:form id="formulaire">
-      
-         <p:fieldset legend="Login" style="margin-bottom:30%">
-         	<f:facet name="#{userBean}"></f:facet>
-	     	<p:outputLabel for="email"> Adresse email <span class="requis"></span></p:outputLabel>
-	        <p:inputText id="email" value="#{connecterBean.utilisateur.email}" required="true" size="20" maxlength="60" />
-	        <p:message id="emailMessage" for="email" errorClass="erreur" label="Email" requiredMessage="#{msg['connexion.email']}" />
+         <fieldset>
+         	<legend>Connexion</legend>
+	     	<h:outputLabel for="email">Adresse email <span class="requis">*</span></h:outputLabel>
+	        <h:inputText id="email" value="#{connecterBean.utilisateur.email}" required="true" size="20" maxlength="60" />
+	        <h:message id="emailMessage" for="email" errorClass="erreur" label="Email" requiredMessage="#{msg['connection.email']}" />
 	        <br />
 	
-	        <p:outputLabel for="motdepasse"> Mot de passe <span class="requis"></span></p:outputLabel>
-	        <p:password id="motdepasse" value="#{connecterBean.utilisateur.motDePasse}" required="true" size="20" maxlength="20" />
-	        <p:message id="motDePasseMessage" for="motdepasse" errorClass="erreur" label="Mot de passe" requiredMessage="#{msg['connexion.motdepasse']}" />
+	        <h:outputLabel for="motdepasse">Mot de passe <span class="requis">*</span></h:outputLabel>
+	        <h:inputSecret id="motdepasse" value="#{connecterBean.utilisateur.motDePasse}" required="true" size="20" maxlength="20" />
+	        <h:message id="motDePasseMessage" for="motdepasse" errorClass="erreur" label="Mot de passe" requiredMessage="#{msg['connexion.motdepasse']}" />
 	        <br/>
 	
 	       
 	        
-	        <p:messages globalOnly="true" infoClass="info" />
+	        <h:messages globalOnly="true" infoClass="info" />
 	
 	        <h:commandButton value="Connexion" action="#{connecterBean.connecter}" styleClass="sansLabel" />
-	        
 	        <br/>
-	        
-          </p:fieldset>
-          <p:graphicImage url = "/resources/images/logoItac.jpg" style="margin-top:40%" />
+          </fieldset>
         </h:form> 
         
          <script>
@@ -75,11 +46,6 @@ xmlns:p="http://primefaces.org/ui"
                     #("div#"+divId).show();
                 });
             });
-        </script>
-        <div id="footer">
-        
-          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
-          </div>
-        
+        </script>	
     </h:body>
 </html>
