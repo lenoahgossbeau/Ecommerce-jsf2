@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+	
+    <h:head>
+   
+        <meta charset="utf-8" />
+        <title>Liste des articles existantes</title>
+        <h:outputStylesheet library= "default" name="css/ecommerce.css" />
+       
+    </h:head>
+    <h:body>
+    
+    <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+      
+       <fieldset> <h1 align="center">Liste des articles enregistrés</h1></fieldset>
+        <div id="corps">
+        
+            <h:form>
+              <!-- p:accordionPanel value="#{articleListBean.articles}" var="article"
+
+                        cellspacing="4" width="60%" rowClasses="paire,impaire" headerClass="titre"/>-->
+                 
+          
+           <p:outputLabel styleClass="erreur" rendered="#{ empty articleListBean.articles }" value="Oupss! aucun article enregistré."/>
+               
+                 <p:dataTable id="article"
+                 
+  value="#{ articleListBean.articles }"
+   var="article"
+   rendered="#{! empty articleListBean.articles }"
+ selection="#{articleListBean.articleSelected}"   
+ emptyMessage="Aucun Article disponible"
+ rows="10"
+ rowKey="#{article.id}"
+ paginatorPosition="bottom"
+ paginatorAlwaysVisible="false"
+ paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+ paginator="true"
+ style="margin-bottom:20px"
+ 
+ 
+ ><f:facet name="{Exporters}">
+           
+            <h:commandLink>
+            
+                <p:graphicImage value ="/images/icons/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="articlelist" fileName="articles"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage value ="/images/icons/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="articlelist" fileName="articles" />
+            </h:commandLink>
+        </f:facet>
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.fournisseur.nom1}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Fournisseur" /></f:facet><h:outputText value="#{article.fournisseur.nom1} #{article.fournisseur.prenom}"/>  </p:column>
+            
+            <p:column style="width: 30px; text-align: center" filterBy="#{article.type_Article.type}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Type d'article" /></f:facet><h:outputText value="#{article.type_Article.type}"/>  </p:column>
+              
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.code}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Code" /></f:facet><h:outputText value="#{article.code}"/></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.nom}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Nom" /></f:facet><h:outputText value="#{article.nom}"/></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.description}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Description" /></f:facet><h:outputText value="#{article.description}" /></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.prixAchat}" filterMatchMode="contains" rendered="#{configurationBean.module_configuration}">
+           <f:facet name="header"><h:outputText value="Prix d'achat" /></f:facet><h:outputText value="#{article.prixAchat} FCFA" /></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.prix}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Prix" /></f:facet><h:outputText value="#{article.prix} FCFA" /></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{article.disponible}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Disponibilité" /></f:facet><h:outputText value="#{article.disponible}" /></p:column>
+           
+         
+           <p:column style="width: 30px; text-align: center"><f:facet name="header"></f:facet>
+           
+           <p:commandButton action="#{articleListBean.detail(article)}" value="Detail" /></p:column> 
+            <p:column style="width: 30px; text-align: center" rendered="#{configurationBean.module_configuration}"><f:facet name="header"></f:facet>
+            
+            <h:commandButton action="#{articlesBean.edit(article)}" value="Modifier" />
+            
+            </p:column> 
+           <p:column style="width: 30px; text-align: center" rendered="#{configurationBean.module_configuration}"><f:facet name="header"></f:facet>
+          
+           <p:commandButton action="#{articleListBean.supprimer(article)}" value="Supprimer">
+            <p:confirm header="Confirmation" message="Merci de confirmer la suppression de l'article" icon="pi pi-exclamation-triangle" />
+           </p:commandButton>
+           
+           <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" >
+           <p:commandButton value="Oui" type="button" styleClass="ui-confirmdialog-yes" icon="pi pi-check" />
+           <p:commandButton value="Non" type="button" styleClass="ui-confirmdialog-no" icon="pi pi-times" />
+    </p:confirmDialog>
+           </p:column>          
+           
+             
+    </p:dataTable>
+    
+ <p:messages globalOnly="true" infoClass="info" />
+
+           </h:form>
+        </div>
+        
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+    
+  
+</html>

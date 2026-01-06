@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+   
+        <meta charset="utf-8" />
+        <title>Liste des fonds existants</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+       <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+        <fieldset> <h1 align="center">Lister daily Fund enregistred</h1></fieldset>
+        <div id="corps">
+      
+        
+            <h:form>
+            
+          
+              
+           <p:dataTable id="daily_Fund" value="#{ daily_FundListBean.daily_Funds }" 
+           var="daily_Fund" 
+           rendered="#{! empty daily_FundListBean.daily_Funds }"
+           emptyMessage="Aucun fond enregistré"
+           paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+           paginator="true" rows="10"
+           style="margin-bottom:20px">
+           <f:facet name="{Exporters}">
+           
+            <h:commandLink>
+            
+                <p:graphicImage value ="/images/icons/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="daily_Fund" fileName="fournisseurs"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage value ="/images/icons/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="daily_Fund" fileName="daily_Funds" />
+            </h:commandLink>
+        </f:facet>
+            
+             
+           <p:column style="width: 30px; text-align: center" filterBy="#{daily_Fund.date}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Date" /></f:facet><h:outputText value="#{daily_Fund.date}" /></p:column>
+            
+           <p:column style="width: 30px; text-align: center" filterBy="#{daily_Fund.amount}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Amount" /></f:facet><h:outputText value="#{daily_Fund.amount} FCFA" /></p:column>
+          
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{daily_Fund.description}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Description" /> </f:facet><h:outputText value="#{daily_Fund.description}" /></p:column>
+           
+          
+           
+           <p:column style="width: 30px; text-align: center"><f:facet name="header"><h:outputText value="" /></f:facet> 
+            <p:commandButton  action="#{daily_FundListBean.detail(daily_Fund)}" value="Detail" />
+             </p:column>
+           <p:column style="width: 30px; text-align: center" rendered="#{configurationBean.admin}"><f:facet name="header"></f:facet><p:commandButton action="#{daily_FundListBean.modifier(daily_Fund)}" value="Modifier" /></p:column> 
+           <p:column style="width: 30px; text-align: center" rendered="#{configurationBean.admin}"><f:facet name="header">Supprimer</f:facet><p:commandButton action="#{daily_FundListBean.supprimer(daily_Fund)}" value="Supprimer" />
+           
+           </p:column>
+                                   
+             </p:dataTable>
+                                      
+           </h:form>
+        </div>
+    </h:body>
+</html>

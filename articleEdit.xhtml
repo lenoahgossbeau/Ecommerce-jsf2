@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Informations sur l'article</title>
+       <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+       <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                        
+                        </h:form>
+        <h:form id ="article">
+    <fieldset>
+   <legend>Details sur l'article</legend>    
+   <p>  <p:outputLabel for="idArticle"> IdArticle </p:outputLabel>
+	        <p:inputText id="idArticle" value="#{articlesBean.article.id}" required="true"  size="20"  maxlength="60" />
+	        <f:param name="idarticle" value="articlesBean.article.id"/>
+	         
+	       	        <p:message id="idMessage" for="idArticle" errorClass="erreur" label="IdArticle"  requiredMessage="#{msg['inscription.email']}" />
+	        <br /></p>
+	        
+	        <p> <p:outputLabel for="codeArticle"> Code de l'article <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="codeArticle" value="#{articlesBean.article.code}" required="true" size="20" maxlength="20" />
+	        <p:message id="codeMessage" for="codeArticle" errorClass="erreur" label="CodeArticle" requiredMessage="#{msg['inscription.nom']}"/>
+	        <br/></p>
+	        
+	        
+	        <div id="Fournisseur">
+                    
+                     <p:outputLabel for="listeFournisseur" value="Choix du fournisseur" />
+        <p:selectOneMenu name="nom1Fournisseur" id="listeFournisseur" value="#{articlesBean.article.fournisseur.id}" style="width:125px"  >
+             
+             <f:selectItems value = "#{ fournisseurBean.fournisseurs.entrySet()}"  var ="fournisseur" 
+                             filterBy="#{column.property}"
+                             
+                             itemValue="#{fournisseur.key}" itemLabel="#{fournisseur.value.nom1}" />   
+        </p:selectOneMenu>
+        
+        
+               </div>    
+               <br/>
+               
+               <div id="Type_Article">
+                    
+                     <p:outputLabel for="listeType" value="Choix du type d'article" />
+        <p:selectOneMenu id="listeType" value="#{articlesBean.article.type_Article.id}" style="width:125px"  >
+             
+             <f:selectItems value = "#{type_ArticleBean.type_Articles.entrySet()}"  var ="type_Article" 
+                             filterBy="#{column.property}"
+                             
+                             itemValue="#{type_Article.key}" itemLabel="#{type_Article.value.type}" />   
+        </p:selectOneMenu>
+        
+               </div>
+               <br/>
+	        
+   
+     <p>  <p:outputLabel for="nomArticle"> Nom de l'article <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="nomArticle" value="#{articlesBean.article.nom}" required="true" size="20" maxlength="60" />
+	       	        <p:message id="nomMessage" for="nomArticle" errorClass="erreur" label="NomArticle" requiredMessage="#{msg['inscription.email']}" />
+	        <br /></p>
+
+	        
+	
+	       <p> <p:outputLabel for="descriptionArticle"> Description <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="descriptionArticle" value="#{articlesBean.article.description}" required="true" size="20" maxlength="20" />
+	        <p:message id="descriptionMessage" for="descriptionArticle" errorClass="erreur" label="DescriptionArticle" requiredMessage="#{msg['inscription.nom']}"/>
+	        <br/></p>
+	        
+	        
+	        <p> <p:outputLabel for="prixAchatArticle"> Prix d'achat <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="prixAchatArticle" value="#{articlesBean.article.prixAchat}" required="true" size="20" maxlength="30" /> FCFA
+	        <p:message id="prixAchatMessage" for="prixAchatArticle" errorClass="erreur" label="PrixAchatArticle" requiredMessage="#{msg['inscription.nom']}"/>
+	        <br/></p>
+	        
+	        
+	        <p> <p:outputLabel for="prixArticle"> Prix <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="prixArticle" value="#{articlesBean.article.prix}" required="true" size="20" maxlength="30" /> FCFA
+	        <p:message id="prixMessage" for="prixArticle" errorClass="erreur" label="PrixArticle" requiredMessage="#{msg['inscription.nom']}"/>
+	        <br/></p>
+	        
+	        <p> <p:outputLabel for="disponibleArticle"> Disponibilité <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="disponibleArticle" value="#{articlesBean.article.disponible}" required="true" size="20" maxlength="20" />
+	        <p:message id="disponibleMessage" for="disponibleArticle" errorClass="erreur" label="DisponibleArticle" requiredMessage="#{msg['inscription.nom']}"/>
+	        <br/></p>
+	        
+	        
+	        
+	        <p:messages globalOnly="true" infoClass="info" />
+	
+	        <h:commandButton value="Valider" action="#{articlesBean.modifier}"  />
+	         <h:commandButton  value="Remettre à zéro" action="#{articlesBean.reset}"/>
+	        
+	        <br/>
+        </fieldset>       
+   
+   
+   </h:form>
+    <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+
+</html>

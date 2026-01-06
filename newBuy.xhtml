@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset ="utf-8" />
+        <title>Achat d'une commande</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css"  />
+        <f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg"/> 
+    </h:head>
+    <h:body>
+       
+   <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+   
+           <fieldset> <h1 align="center">Opération d'achat</h1></fieldset>
+    <h:form id="buy">
+   <fieldset>
+                    <legend>Status Achat</legend>
+     				
+                        
+             <div id="Status_Buy">
+                       <p:outputLabel for="listeStatus_Buys" value="Selectioner le status d'Achat" />
+        <p:selectOneMenu id="listeStatus_Buys" value="#{buyBean.codeStatus_Buy}" style="width:125px">
+             <f:selectItems value = "#{ status_BuyBean.status_Buys.entrySet()}"  var ="status_Buy" 
+                          filterBy="#{column.property}"
+                             itemValue="#{status_Buy.key}" itemLabel="#{status_Buy.value.strCode}" />
+        </p:selectOneMenu>
+        </div>
+        </fieldset>
+           
+            <fieldset>
+                    <legend>Choix type d'Achat</legend>
+     				
+                        
+             <div id="Type_Buy">
+                       <p:outputLabel for="listeType_Buys" value="Selectioner le type d'Achat" />
+        <p:selectOneMenu id="listeType_Buys" value="#{buyBean.codeType_Buy}" style="width:125px">
+             <f:selectItems value = "#{ type_BuyBean.type_Buys.entrySet()}"  var ="type_Buy" 
+                          filterBy="#{column.property}"
+                             itemValue="#{type_Buy.key}" itemLabel="#{type_Buy.value.strCode}" />
+        </p:selectOneMenu>
+        </div>
+        </fieldset>
+           
+          <fieldset>
+          
+         	<legend>Achat</legend>
+         	
+         	 <ui:include src="/inc/inc_buy_form.xhtml" />
+	     	  <ui:include src="/inc/itemOrderList.xhtml" /> 
+	     	
+	        
+	               
+	              
+            
+            <p:commandButton value="Achat" action="#{buyBean.creerbuy}"   />
+             <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+            <br/>
+             <p:messages globalOnly="true" infoClass="info" />  
+        </fieldset>
+        </h:form>
+       	<!--  <script>
+        	jQuery(document).ready(function(){
+        		/* 1 - Au lancement de la page, on cache le bloc d'éléments du formulaire correspondant aux buys existants */
+        		#("div#ancienBuy").hide();
+        		/* 2 - Au clic sur un des deux boutons radio "choixNouveauBuy", on affiche le bloc d'éléments correspondant (nouveau ou ancien buy) */
+                jQuery('input[name=choixNouveauBuy]:radio').click(function(){
+                	#("div#nouveauBuy").hide();
+                	#("div#ancienBuyt").hide();
+                    var divId = jQuery(this).val();
+                    #("div#"+divId).show();
+                });
+            });
+        </script>	--> 
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+         
+    </h:body>
+</html>

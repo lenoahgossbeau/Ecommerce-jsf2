@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+   
+        <meta charset="utf-8" />
+        <title>Liste des fournisseurs existants</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+       <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+       
+        <div id="corps">
+      
+        
+            <h:form>
+            
+          
+              
+           <p:dataTable id="fournisseur" value="#{ fournisseurListBean.fournisseurs }" 
+           var="fournisseur" 
+           rendered="#{! empty fournisseurListBean.fournisseurs }"
+           emptyMessage="Aucun fournisseur enregistré"
+           paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+           paginator="true" rows="10"
+           style="margin-bottom:20px">
+           <f:facet name="{Exporters}">
+           
+            <h:commandLink>
+            
+                <p:graphicImage value ="/images/icons/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="fournisseur" fileName="fournisseurs"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage value ="/images/icons/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="fournisseur" fileName="fournisseurs" />
+            </h:commandLink>
+        </f:facet>
+            
+           <p:column style="width: 30px; text-align: center" filterBy="#{fournisseur.nom1}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Nom1" /></f:facet><h:outputText value="#{fournisseur.nom1}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{fournisseur.prenom}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Prenom" /></f:facet><h:outputText value="#{fournisseur.prenom}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{fournisseur.email}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Email" /> </f:facet><h:outputText value="#{fournisseur.email}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{fournisseur.siege_social}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Siege_social" /> </f:facet><h:outputText value="#{fournisseur.siege_social}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{fournisseur.telephone}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Telephone" /> </f:facet><h:outputText value="#{fournisseur.telephone}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{fournisseur.code1}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Code1" /> </f:facet><h:outputText value="#{fournisseur.code1}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center"><f:facet name="header"><h:outputText value="" /></f:facet> 
+            <p:commandButton  action="#{fournisseurListBean.detail(fournisseur)}" value="Detail" />
+             </p:column>
+           <p:column style="width: 30px; text-align: center" ><f:facet name="header"></f:facet><p:commandButton action="#{fournisseurListBean.modifier(fournisseur)}" value="Modifier" /></p:column> 
+           <p:column style="width: 30px; text-align: center" ><f:facet name="header">Supprimer</f:facet><p:commandButton action="#{fournisseurListBean.supprimer(fournisseur)}" value="Supprimer" />
+           
+           </p:column>
+                                   
+             </p:dataTable>
+                                      
+           </h:form>
+        </div>
+    </h:body>
+</html>

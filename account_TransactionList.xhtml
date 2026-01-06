@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+	
+    <h:head>
+   
+        <meta charset="utf-8" />
+        <title>Lister account transaction</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css" />
+       
+    </h:head>
+    <h:body>
+    
+    <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+      
+       <fieldset> <h1 align="center">Lister account transaction enregistred</h1></fieldset>
+        <div id="corps">
+        
+            <h:form>
+              
+              
+                 <p:dataTable id="account_Transaction"
+  value="#{ account_TransactionListBean.account_Transactions }"
+   var="account_Transaction"
+   rendered="#{! empty account_TransactionListBean.account_Transactions }"
+  
+ emptyMessage="Aucun account_Transaction disponible"
+ rows="10"
+ rowKey="#{account_Transaction.id}"
+ paginatorPosition="bottom"
+ paginatorAlwaysVisible="false"
+ paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+ paginator="true"
+ style="margin-bottom:20px"
+ 
+ 
+ ><f:facet name="{Exporters}">
+           
+            <h:commandLink>
+            
+                <p:graphicImage value ="/images/icons/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="account_Transactionlist" fileName="account_Transactions"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage value ="/images/icons/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="account_Transactionlist" fileName="account_Transactions" />
+            </h:commandLink>
+        </f:facet>
+        
+        <p:column style="width: 30px; text-align: center" filterBy="#{configurationBean.utilisateur.nom}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Nom" /></f:facet><h:outputText value="#{configurationBean.utilisateur.nom}"/>  </p:column>
+             <p:column style="width: 30px; text-align: center" filterBy="#{account_Transaction.type_Transaction.str_type}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Type de Transaction" /></f:facet><h:outputText value="#{account_Transaction.type_Transaction.str_type}"/>  </p:column>
+          
+           <p:column style="width: 30px; text-align: center" filterBy="#{account_Transaction.type_Account.type}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Type de Compte" /></f:facet><h:outputText value="#{account_Transaction.type_Account.type}"/>  </p:column>
+          
+          <p:column style="width: 30px; text-align: center" filterBy="#{account_Transaction.account_number}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Numero de Compte" /></f:facet><h:outputText value="#{account_Transaction.account_number}"/></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{account_Transaction.account_name}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Nom de Compte" /></f:facet><h:outputText value="#{account_Transaction.account_name}"/></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{account_Transaction.causal}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Motivation" /></f:facet><h:outputText value="#{account_Transaction.causal}" /></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{account_Transaction.date}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Date" /></f:facet><h:outputText value="#{account_Transaction.date}" /></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{account_Transaction.amount}" filterMatchMode="contains">
+           <f:facet name="header"><h:outputText value="Montant" /></f:facet><h:outputText value="#{account_Transaction.amount}FCFA" /></p:column>
+           
+         
+           <p:column style="width: 30px; text-align: center"><f:facet name="header"></f:facet><p:commandButton action="#{account_TransactionListBean.detail(account_Transaction)}" value="Detail" /></p:column> 
+            <p:column style="width: 30px; text-align: center" rendered="#{configurationBean.admin}"><f:facet name="header"></f:facet><h:commandButton action="#{account_TransactionListBean.modifier(account_Transaction)}" value="Modifier" /></p:column> 
+           <p:column style="width: 30px; text-align: center" rendered="#{configurationBean.admin}"><f:facet name="header"></f:facet><p:commandButton action="#{account_TransactionListBean.supprimer(account_Transaction)}" value="Supprimer" /></p:column>          
+           
+             
+    </p:dataTable>
+    
+
+
+           </h:form>
+        </div>
+        
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+    
+  
+</html>

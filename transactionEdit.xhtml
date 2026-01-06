@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Informations sur le compte et la transaction</title>
+       <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+       <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                        
+                        </h:form>
+       <h:form>
+    <fieldset>
+   <legend>Details sur l'account_Transaction</legend>  
+    <div id="account_Transaction">  
+   <p>  <p:outputLabel for="idAccount_Transaction"> IdAccount_Transaction </p:outputLabel>
+	        <p:inputText id="idAccount_Transaction" value="#{account_TransactionBean.account_Transaction.id}" required=""  size="20" disabled="true" maxlength="60" />
+	        <f:param name="idaccount_Transaction" value="account_TransactionBean.account_Transaction.id"/>
+	         
+	       	                <br /></p>
+	       	                 </div>
+	       	                 
+	       	                 <div id="Type_Transaction">
+                    
+                     <p:outputLabel for="listeType" value="Choix du type de transaction" />
+                     <p:selectOneMenu id="listeType" value="#{account_TransactionBean.account_Transaction.type_Transaction.id}" style="width:125px"  >
+             
+                     <f:selectItems value = "#{type_TransactionBean.type_Transactions.entrySet()}"  var ="type_Transaction" 
+                             filterBy="#{column.property}"
+                             
+                             itemValue="#{type_Transaction.key}" itemLabel="#{type_Transaction.value.str_type}" />   
+        </p:selectOneMenu>
+        
+               </div>
+               <br/>
+	       	                 
+	       	                <div id="Type_Account">
+                    
+                     <p:outputLabel for="listType_Account" value="Choix du type de compte" />
+                     <p:selectOneMenu id="listType_Account" value="#{account_TransactionBean.account_Transaction.type_Account.id}" style="width:125px"  >
+             
+                     <f:selectItems value = "#{type_AccountBean.type_Accounts.entrySet()}"  var ="type_Account" 
+                             filterBy="#{column.property}"
+                             
+                             itemValue="#{type_Account.key}" itemLabel="#{type_Account.value.type}" />   
+        </p:selectOneMenu>
+        
+               </div>
+                <br/>
+	                          
+	                                    <p><p:outputLabel for="account_numberAccount_Transaction"> Account_Number </p:outputLabel>
+                                <p:inputText id="account_numberAccount_Transaction"  value= "#{account_TransactionBean.account_Transaction.account_number}" required="" size="30" maxlength="30" />
+                                <p:message id="account_numberMessage" for="account_numberAccount_Transaction" errorClass="erreur" label="Account_NumberAccount_Transaction" requiredMessage="#{msg['account_Transaction.account_numberAccount_Transaction']}" />	        
+
+                        <br /></p>
+                        
+                                 <p><p:outputLabel for="account_nameAccount_Transaction"> Account_Name </p:outputLabel>
+                                 <p:inputText id="account_nameAccount_Transaction"  value= "#{account_TransactionBean.account_Transaction.account_name}" required="" size="30" maxlength="30" />
+                                 <p:message id="account_nameMessage" for="account_nameAccount_Transaction" errorClass="erreur" label="Account_NameAccount_Transaction" requiredMessage="#{msg['account_Transaction.account_nameAccount_Transaction']}" />	        
+
+                       <br /></p>
+                       
+                                 <p><p:outputLabel for="causalAccount_Transaction"> Causal </p:outputLabel>
+                                 <p:inputText id="causalAccount_Transaction"  value= "#{account_TransactionBean.account_Transaction.causal}" required="" size="30" maxlength="30" />
+                                 <p:message id="causalMessage" for="causalAccount_Transaction" errorClass="erreur" label="CausalAccount_Transaction" requiredMessage="#{msg['account_Transaction.causalAccount_Transaction']}" />	        
+
+                        <br /></p>
+                        
+
+                                 <p><p:outputLabel for="amountAccount_Transaction"> Amount </p:outputLabel>
+                                 <p:inputText id="amountAccount_Transaction"  value= "#{account_TransactionBean.account_Transaction.amount}" required="" size="30" maxlength="30" /> FCFA
+                                 <p:message id="amountMessage" for="amountAccount_Transaction" errorClass="erreur" label="AmountAccount_Transaction" requiredMessage="#{msg['account_Transaction.amountAccount_Transaction']}" />	        
+                        <br /></p>
+                          
+	        <p:messages globalOnly="true" infoClass="info" />
+	
+	        <h:commandButton value="Valider" action="#{account_TransactionBean.modifier}"  />
+	         <h:commandButton  value="Remettre à zéro" action="#{account_TransactionBean.reset}"/>
+	        
+	        <br/>
+               <br/>
+	                      
+        </fieldset>       
+   
+   
+   </h:form>
+    <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+
+</html>

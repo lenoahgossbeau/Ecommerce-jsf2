@@ -1,0 +1,58 @@
+
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Informations sur l'operation d'Entree</title>
+       <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+        <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+    <h:form>
+   <fieldset>
+   <legend>Detail des Entrees</legend>
+        <div id="corps">
+            <p class="info">#{ form.resultat }</p>
+            
+            <p><p:outputLabel for="dateEntree"> Date de l'entrée : </p:outputLabel>
+            <p:outputLabel id="dateEntree"  value= "#{entreeListBean.entree.date}" required="true" size="30" maxlength="30" disabled="true"/>
+            <p:message id="dateMessage" for="dateEntree" errorClass="erreur" label="DateEntree" requiredMessage="#{msg['entree.date']}" />	        
+
+	<br /></p>
+		
+           <p><p:outputLabel for="nomEntree"> Nom : </p:outputLabel>
+            <p:outputLabel id="nomEntree"  value= "#{entreeListBean.entree.nom}" required="true" size="30" maxlength="30" />
+            <p:message id="nomMessage" for="nomEntree" errorClass="erreur" label="NomEntree" requiredMessage="#{msg['entree.nom']}" />	        
+
+    <br /></p>
+
+
+            <p><p:outputLabel for="quantitéEntree"> Quantité : </p:outputLabel>
+            <p:outputLabel id="quantitéEntree"  value= "#{entreeListBean.entree.quantité}" required="true" size="30" maxlength="30" />
+            <p:message id="quantitéMessage" for="quantitéEntree" errorClass="erreur" label="QuantitéEntree" requiredMessage="#{msg['entree.quantité']}" />	        
+	
+	<br /></p>
+            
+           <p:messages globalOnly="true" infoClass="info" />
+        </div>
+         <ui:include src="/inc/itemArticleEntredList.xhtml" />
+        <br />
+        </fieldset>
+        </h:form>
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>

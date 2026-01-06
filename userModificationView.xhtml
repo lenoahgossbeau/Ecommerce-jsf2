@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Informations sur le fournisseur</title>
+       <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+        <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+   <h:form>
+    <fieldset>
+   <legend>Details sur l'utilisateur</legend>
+        <div id="corps">
+        
+            <p><p:outputLabel for="emailUser"> Email : </p:outputLabel>
+            <p:inputText id="emailUser"  value= "#{userListBean.utilisateur.email}" required="true" size="30" maxlength="30" />
+            <p:message id="emailMessage" for="emailUser" errorClass="erreur" label="EmailUser" requiredMessage="#{msg['fournisseur.nom1']}" />	        
+
+<br /></p>
+
+            <p><p:outputLabel for="nomUser" > Nom d'utilisateur : </p:outputLabel>
+            <p:inputText id="nomUser"  value= "#{userListBean.utilisateur.nom}" required="true" size="30" maxlength="30" />
+            <p:message id="nomMessage" for="nomUser" errorClass="erreur" label="NomUser" requiredMessage="#{msg['fournisseur.prenom']}" />	        
+
+	
+	
+    <br /></p>
+            <p><p:outputLabel for="profileUser"> Profile : </p:outputLabel>
+            <p:outputLabel id="profileUser"  value= "#{userListBean.utilisateur.profile.name}" required="true" size="30" maxlength="30" />
+            <p:message id="profileMessage" for="profileUser" errorClass="erreur" label="ProfileUser" requiredMessage="#{msg['fournisseur.siege_social']}" />	        
+	
+     <br /></p>
+            <p><p:outputLabel for="actionUser"> Action : </p:outputLabel>
+            <p:outputLabel id="actionUser"  value= "#{userListBean.utilisateur.profile.action}" required="true" size="30" maxlength="30" />
+            <p:message id="actionMessage" for="actionUser" errorClass="erreur" label="ActionUser" requiredMessage="#{msg['fournisseur.siege_social']}" />	        
+	<br /></p>
+        </div>
+        </fieldset>
+    </h:form>
+    <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>

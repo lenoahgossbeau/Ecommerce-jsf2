@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"> 
+    <h:head>
+        <meta charset ="utf-8" />
+        <title> Commande </title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css"  />
+        <f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg"/> 
+    </h:head>
+<h:body  >   
+
+	<h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+          
+      </h:form> 
+       
+       
+      <fieldset> <h1 align="center">Création d'une nouvelle commande</h1>
+      </fieldset>
+      
+      
+      <h:form id="client"> 
+       
+       <fieldset>
+                    <legend>Informations sur le client</legend>
+     				
+                   
+        
+        <p:outputLabel for="listeClients" value="Selectioner le client:" />
+        <p:selectOneMenu id="listeClients" value="#{commandeBean.codeCustomer}" style="width:125px">
+            <f:selectItems value = "#{ clientBean.clients.entrySet()}"  var ="client" 
+                         filterBy="#{column.property}"
+                          itemValue="#{client.key}" itemLabel="#{client.value.nom} #{client.value.prenom}" /> 
+        </p:selectOneMenu>
+        
+        
+                    <!--<p:selectOneListbox  value="#{ commandeBean.codeCustomer }"
+                         name="listeClients" id="listeClients"  filterBy="#{customer.id}"
+                          filterMatchMode="contains"> 
+                        <h:outputText value="#{customer.id}"/>
+                         <f:selectItems value = "#{ clientBean.clients.entrySet()}"  var ="client" 
+                         filterBy="#{column.property}"
+                          itemValue="#{client.key}" itemLabel="#{client.value.nom}" /> 
+                                                       
+                         </p:selectOneListbox>-->
+                          
+                       
+                
+                
+            
+               
+         </fieldset> 
+         
+         <p:panel rendered="#{!configurationBean.module_achat }">
+         <fieldset>
+                    <legend>Status d'Achat</legend>
+     				
+                        
+             <div id="Status_Buy">
+                       <p:outputLabel for="listeStatus_Buys" value="Selectioner le status d'Achat" />
+        <p:selectOneMenu id="listeStatus_Buys" value="#{buyBean.codeStatus_Buy}" style="width:125px">
+             <f:selectItems value = "#{ status_BuyBean.status_Buys.entrySet()}"  var ="status_Buy" 
+                          filterBy="#{column.property}"
+                             itemValue="#{status_Buy.key}" itemLabel="#{status_Buy.value.strCode}" />
+        </p:selectOneMenu>
+        </div>
+        </fieldset>
+           
+            <fieldset>
+                    <legend>Choix type d'Achat</legend>
+     				
+                        
+             <div id="Type_Buy">
+                       <p:outputLabel for="listeType_Buys" value="Selectioner le type d'Achat" />
+        <p:selectOneMenu id="listeType_Buys" value="#{buyBean.codeType_Buy}" style="width:125px">
+             <f:selectItems value = "#{ type_BuyBean.type_Buys.entrySet()}"  var ="type_Buy" 
+                          filterBy="#{column.property}"
+                             itemValue="#{type_Buy.key}" itemLabel="#{type_Buy.value.strCode}" />
+        </p:selectOneMenu>
+        </div>
+        </fieldset>
+        
+             <fieldset>
+                    <legend>Paiement</legend>
+                <p:outputLabel for="amount_depositBuy" > Montant de dépot  </p:outputLabel>
+            <p:inputText id="amount_depositBuy"  value= "#{ commandeBean.buy.amount_deposit}" required="" size="30" maxlength="60" /> FCFA
+            <p:message id="amount_depositMessage" for="amount_depositBuy" errorClass="erreur" label="Amount_depositBuy" requiredMessage="#{msg['buy.amount_deposit']}" />	        
+
+               </fieldset>
+              
+                    
+                    <br />
+             </p:panel>       
+       
+         <fieldset>
+         	<legend> Nouvelle commande </legend>
+         	
+         	<p:outputLabel for="designationCommande"> Designation </p:outputLabel>
+            <p:inputText id="designationCommande" value= "#{commandeBean.commande.designation}" required="" size="30" maxlength="30" />
+            <p:message id="designationCommandeMessage" for="designationCommande" errorClass="erreur" label="DesignationCommande" requiredMessage="#{msg['commande.designationCommande']}" />
+                    
+                    <br />
+         	 
+	     	<p:outputLabel id="date"> Date </p:outputLabel>
+	        <p:inputText id="dateCommamde"  value= "#{commandeBean.commande.date}" required="" size="30" maxlength="30" disabled="true" />
+	        <p:message id="dateMessage" for="date" errorClass="erreur" label="Date" requiredMessage="#{msg['commande.dateCommande']}" />
+	        <br />
+	
+	         
+                    <p:outputLabel for="modePaiementCommande"> Mode de paiement </p:outputLabel>
+                    <p:inputText id="modePaiementCommande" value= "#{commandeBean.commande.modePaiement}" required="" size="30" maxlength="30" />
+                   <p:message id="modePaiementCommandeMessage" for="modePaiementCommande" errorClass="erreur" label="ModePaiementCommande" requiredMessage="#{msg['commande.modePaiementCommande']}" />
+                    
+                    <br />
+                    
+                    <p:outputLabel for="statutPaiementCommande"> Statut du paiement </p:outputLabel>
+                    <p:inputText id="statutPaiementCommande" value= "#{commandeBean.commande.statutPaiement}" required="" size="30" maxlength="30" />
+                    <p:message id="statutPaiementCommandeMessage" for="statutPaiementCommande" errorClass="erreur" label="StatutPaiementCommande" requiredMessage="#{msg['commande.statutPaiementCommande']}" />
+                    
+                    <br />
+                    
+                    <p:outputLabel for="modeLivraisonCommande"> Mode de livraison </p:outputLabel>
+                    <p:inputText id="modeLivraisonCommande" value= "#{commandeBean.commande.modeLivraison}" required="" size="30" maxlength="30" />
+                    <p:message id="modeLivraisonCommandeMessage" for="modeLivraisonCommande" errorClass="erreur" label="ModeLivraisonCommande" requiredMessage="#{msg['commande.modeLivraisonCommande']}" />
+                   
+                    <br />
+                    
+                    <p:outputLabel for="statutLivraisonCommande"> Statut de la livraison </p:outputLabel>
+                    <p:inputText id="statutLivraisonCommande"  value= "#{commandeBean.commande.statutLivraison}" required="" size="30" maxlength="30" />
+                    <p:message id="statutLivraisonCommandeMessage" for="statutLivraisonCommande" errorClass="erreur" label="StatutLivraisonCommande" requiredMessage="#{msg['commande.statutLivraisonCommande']}" />
+                     
+                    <br />
+                    
+                    
+                    
+                    
+               
+	                  <ui:include src="/inc/itemArticlesList.xhtml" /> 
+	       
+	        <br />
+	        <p:messages globalOnly="true" infoClass="info" />
+	       </fieldset>
+	       <fieldset>
+	 		<h:commandButton value="Valider" action="#{commandeBean.creerCommande}"   rendered="#{! empty articleListBean.articles }"/>
+             <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+	        <br/>
+          </fieldset>
+        </h:form> 
+        
+     <!--<script>
+        	jQuery(document).ready(function(){
+        		/* 1 - Au lancement de la page, on cache le bloc d'éléments du formulaire correspondant aux clients existants */
+        		#("div#ancienClient").hide();
+        		/* 2 - Au clic sur un des deux boutons radio "choixNouveauClient", on affiche le bloc d'éléments correspondant (nouveau ou ancien client) */
+                jQuery('input[name=choixNouveauClient]:radio').click(function(){
+                	#("div#nouveauClient").hide();
+                	#("div#ancienClient").hide();
+                    var divId = jQuery(this).val();
+                    #("div#"+divId).show();
+                });
+            });
+        </script>-->
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>

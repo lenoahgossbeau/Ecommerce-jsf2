@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Informations sur le client</title>
+       <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+        <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+   <h:form>
+    <fieldset>
+   <legend>Details sur l'utilisateur</legend>
+        <div id="corps">
+        
+        <p>  <p:outputLabel for="idCustomer">  IdCustomer <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="idCustomer" value="#{clientBean.client.id}" required="true"  size="20" disabled="true" maxlength="60" />
+	        <f:param name="idcustomer" value="clientBean.client.id"/>
+	        
+	       	      
+	        <br /></p>
+        
+            <p><p:outputLabel for="nomCustomer"> Nom : </p:outputLabel>
+            <p:inputText id="nomCustomer"  value= "#{clientBean.client.nom}" required="true" size="30" maxlength="30" />
+            <p:message id="nomMessage" for="nomCustomer" errorClass="erreur" label="NomCustomer" requiredMessage="#{msg['customer.nom']}" />	        
+
+<br /></p>
+            <p><p:outputLabel for="prenomCustomer"> Prenom : </p:outputLabel>
+            <p:inputText id="prenomCustomer"  value= "#{clientBean.client.prenom}" required="true" size="30" maxlength="30" />
+            <p:message id="prenomMessage" for="prenomCustomer" errorClass="erreur" label="PrenomCustomer" requiredMessage="#{msg['customer.prenom']}" />	        
+
+
+<br /></p>
+
+            <p><p:outputLabel for="adresseCustomer"> Adresse : </p:outputLabel>
+            <p:inputText id="adresseCustomer"  value= "#{clientBean.client.adresse}" required="true" size="30" maxlength="30" />
+            <p:message id="adresseMessage" for="adresseCustomer" errorClass="erreur" label="AdresseCustomer" requiredMessage="#{msg['customer.adresse']}" />	        
+
+
+<br /></p>
+            <p><p:outputLabel for="telephoneCustomer"> Telephone : </p:outputLabel>
+            <p:inputText id="telephoneCustomer"  value= "#{clientBean.client.telephone}" required="true" size="30" maxlength="30" />
+            <p:message id="telephoneMessage" for="telephoneCustomer" errorClass="erreur" label="TelephoneCustomer" requiredMessage="#{msg['customer.telephone']}" />	        
+
+
+<br /></p>
+
+
+            <p><p:outputLabel for="emailCustomer" > Email : </p:outputLabel>
+            <p:inputText id="emailCustomer"  value= "#{clientBean.client.email}" required="true" size="30" maxlength="30" />
+            <p:message id="emailMessage" for="emailCustomer" errorClass="erreur" label="EmailCustomer" requiredMessage="#{msg['customer.email']}" />	        
+
+	<br /></p>
+	
+       
+    </div>
+    <h:commandButton value="Valider" action="#{clientBean.modifier}" />
+    </fieldset> 
+    
+    </h:form>
+   
+    </h:body>
+</html>

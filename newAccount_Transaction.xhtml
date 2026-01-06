@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+        <meta charset ="utf-8" />
+        <title> Account_Tansaction </title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css"  />
+        <f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg"/> 
+    </h:head>
+    <h:body>
+       
+   <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                       
+   
+   </h:form>
+     <h:form id="account_Transaction">
+            
+             <fieldset> <h1 align="center">Creation d'une transaction en compte</h1></fieldset>
+            <fieldset>
+                    <legend>Choix du type de transaction</legend>
+     				
+                        
+             <div id="Type_Transaction">
+                       <p:outputLabel for="listeType_Transactions" value="Selectioner le Type de Transaction" />
+        <p:selectOneMenu id="listeType_Transactions" value="#{account_TransactionBean.codeType_Transaction}" style="width:125px">
+             <f:selectItems value = "#{ type_TransactionBean.type_Transactions.entrySet()}"  var ="type_Transaction" 
+                          filterBy="#{column.property}"
+                             itemValue="#{type_Transaction.key}" itemLabel="#{type_Transaction.value.str_type}" />
+        </p:selectOneMenu>
+        </div>
+        </fieldset>
+        
+        <fieldset>
+                    <legend>Choix du type de compte</legend>
+     				
+                        
+             <div id="Type_Account">
+                       <p:outputLabel for="listeType_Accounts" value="Selectioner le Type de Compte" />
+        <p:selectOneMenu id="listeType_Accounts" value="#{account_TransactionBean.codeType_Account}" style="width:125px">
+             <f:selectItems value = "#{ type_AccountBean.type_Accounts.entrySet()}"  var ="type_Account" 
+                          filterBy="#{column.property}"
+                             itemValue="#{type_Account.key}" itemLabel="#{type_Account.value.type}" />
+        </p:selectOneMenu>
+        </div>
+        </fieldset>
+         <fieldset>
+          
+         	<legend> Nouvelle transaction </legend>
+         	 <ui:include src="/inc/inc_account_Transaction_form.xhtml" />
+	      
+	        <p class="info">${ form.resultat }</p>
+	               
+	                  <p:messages globalOnly="true" infoClass="info" />
+           <p:commandButton value="Valider" action="#{account_TransactionBean.creeraccount_Transaction}" />
+                <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+            <br/>
+        </fieldset>
+        </h:form> 
+         
+           
+             
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+	  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html"
+	  xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Informations sur le fournisseur</title>
+       <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+        <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+   <h:form>
+    <fieldset>
+   <legend>Details sur le fournisseur</legend>
+        <div id="corps">
+        
+        <p>  <p:outputLabel for="idFournisseur">  IdFournisseur <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="idFournisseur" value="#{fournisseurBean.fournisseur.id}" required="true"  size="20" disabled="true" maxlength="60" />
+	        <f:param name="idfournisseur" value="fournisseurBean.fournisseur.id"/>
+	        
+	       	      
+	        <br /></p>
+        
+          <p><p:outputLabel for="nom1Fournisseur">  Nom1 <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="nom1Fournisseur" value="#{fournisseurBean.fournisseur.nom1}" required="true" size="30" maxlength="30" />
+	       <p:message id="nomMessage" for="nom1Fournisseur" errorClass="erreur" label="Nom1Fournisseur" requiredMessage="#{msg['fournisseur.nom1']}" />	        
+
+	        
+	       	      
+	        <br /></p>
+	        <p><p:outputLabel for="prenomFournisseur"> Prenom : </p:outputLabel>
+            <p:inputText id="prenomFournisseur"  value= "#{fournisseurBean.fournisseur.prenom}" required="true" size="30" maxlength="30" />
+            <p:message id="prenomMessage" for="prenomFournisseur" errorClass="erreur" label="PrenomFournisseur" requiredMessage="#{msg['fournisseur.prenom']}" />	        
+
+
+<br /></p>
+
+            <p><p:outputLabel for="emailFournisseur"> Email : </p:outputLabel>
+            <p:inputText id="emailFournisseur"  value= "#{fournisseurBean.fournisseur.email}" required="true" size="30" maxlength="30" />
+            <p:message id="emailMessage" for="emailFournisseur" errorClass="erreur" label="EmailFournisseur" requiredMessage="#{msg['fournisseur.email']}" />	        
+
+
+<br /></p>
+
+ <p><p:outputLabel for="siege_socialFournisseur"> Siege_social : </p:outputLabel>
+            <p:inputText id="siege_socialFournisseur"  value= "#{fournisseurBean.fournisseur.siege_social}" required="true" size="30" maxlength="30" />
+            <p:message id="siege_socialMessage" for="siege_socialFournisseur" errorClass="erreur" label="Siege_socialFournisseur" requiredMessage="#{msg['customer.siege_social']}" />	        
+
+
+<br /></p>
+            
+            
+            <p><p:outputLabel for="telephoneFournisseur" > Telephone : </p:outputLabel>
+            <p:inputText id="telephoneFournisseur"  value= "#{fournisseurBean.fournisseur.telephone}" required="true" size="30" maxlength="30" />
+            <p:message id="telephoneMessage" for="telephoneFournisseur" errorClass="erreur" label="TelephoneFournisseur" requiredMessage="#{msg['fournisseur.telephone']}" />	        
+<br /></p>
+       
+       <p><p:outputLabel for="code1Fournisseur" > Code1 : </p:outputLabel>
+            <p:inputText id="code1Fournisseur"  value= "#{fournisseurBean.fournisseur.code1}" required="true" size="30" maxlength="30" />
+            <p:message id="code1Message" for="code1Fournisseur" errorClass="erreur" label="Code1Fournisseur" requiredMessage="#{msg['fournisseur.code1']}" />	        
+
+	<br /></p>
+    </div>
+    <h:commandButton value="Valider" action="#{fournisseurBean.modifier}" />
+    </fieldset> 
+    
+    </h:form>
+   
+    </h:body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+
+<h:head>
+   
+        <meta charset="utf-8" />
+        <title>Filtre de recherche des articles</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    
+    <h:body>
+       <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+   
+      <h:form id="Filtre">
+      <fieldset>
+                    <legend>Filtre de recherche</legend>
+          <div id="fournisseur">
+          
+          
+          
+   <h:outputLabel for="fournisseur"> Fournisseur <span class="requis">*</span> </h:outputLabel>
+   
+   <h:selectOneMenu   value="#{ articlesBean.codeFournisseur }"
+                        required="true" requiredMessage="vous devez choisir un fournisseur"
+                          name="listeFournisseurs" id="listeFournisseurs" >
+                         <f:selectItems value = "#{ fournisseurBean.fournisseurs.entrySet()}"  var ="fournisseur" 
+                             itemValue="#{fournisseur.key}" itemLabel="#{fournisseur.value.nom1}" />  
+                          
+                        </h:selectOneMenu>
+                        <br/>
+                        
+              <h:outputLabel for="TypeArticle"> Type d'article <span class="requis">*</span> </h:outputLabel>
+                        <h:selectOneMenu  value="#{ articlesBean.typeType_Article }"
+                        required="true" requiredMessage="vous devez choisir un type d'article"
+                          name="listeType_Articles" id="listeType_Articles" >
+                         <f:selectItems value = "#{ type_ArticleBean.type_Articles.entrySet()}"  var ="type_Article" 
+                             itemValue="#{type_Article.key}" itemLabel="#{type_Article.value.type}" />  
+                           
+                        
+                        </h:selectOneMenu>
+                        <br/>
+                        <h:messages globalOnly="true" infoClass="info" />
+                        
+                        
+	
+	
+                                    <h:commandButton value="Recherche" class="" action="#{articlesBean.creerArticle}" />
+                                   
+                                    
+              
+                        <br/>
+                        </div>   
+         </fieldset>
+                        
+                        <h:form id="menuForm">
+                        <fieldset>
+                    <legend>Liste des Articles</legend>
+                    <div id="ancienFournisseur">
+                        
+                   <ui:include src="/inc/itemArticlesList.xhtml" />
+                   </div>   
+         </fieldset>
+                   </h:form>
+                   
+              
+     </h:form>
+   </h:body>
+   
+</html>

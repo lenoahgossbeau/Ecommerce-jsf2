@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+	
+    <h:head>
+   
+        <meta charset="utf-8" />
+        <title>Liste des articles existantes</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+    <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+      
+       
+        <div id="corps">
+        
+            <h:form>
+              <!-- p:accordionPanel value="#{articleListBean.articles}" var="article"
+
+                        cellspacing="4" width="60%" rowClasses="paire,impaire" headerClass="titre"/>-->
+                 
+           
+           <p:outputLabel styleClass="erreur" rendered="#{ empty articleListBean.articles }" value="Oupss! aucun article enregistrée."/>
+               
+                 <ui:include src ="/inc/itemArticleDashboardList.xhtml"  /> 
+         
+                     
+          <p>
+         <p:commandButton action="#{articlesBean.selection(article)}" value="" />
+          </p>
+           </h:form>
+        </div>
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>

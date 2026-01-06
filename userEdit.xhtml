@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Informations sur l'utilisateur</title>
+       <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+        <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   
+   </h:form>
+   <h:form id="utilisateur">
+    <fieldset>
+   <legend>Details sur l'utilisateur</legend>
+   <p>  <p:outputLabel for="idUtilisateur"> UserId <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="idUtilisateur" value="#{inscrireBean.utilisateur.id}" required="true"  size="20" disabled="true" maxlength="60" />
+	        <f:param name="iduser" value="inscrireBean.utilisateur.id"/>
+	         <f:param name="motdepasse" value="inscrireBean.utilisateur.motDePasse"/>
+	       	        <p:message id="idMessage" for="idUtilisateur" errorClass="erreur" label="IdUtilisateur"  brequiredMessage="#{msg['inscription.email']}" />
+	        <br /></p>
+   
+     <p>  <p:outputLabel for="emailUtilisateur">Adresse email <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="emailUtilisateur" value="#{inscrireBean.utilisateur.email}" required="true" size="20" maxlength="60" />
+	       	        <p:message id="emailMessage" for="emailUtilisateur" errorClass="erreur" label="EmailUtilisateur" requiredMessage="#{msg['inscription.email']}" />
+	        <br /></p>
+
+	        
+	
+	       <p> <p:outputLabel for="nomUser">Nom d'utilisateur <span class="requis">*</span></p:outputLabel>
+	        <p:inputText id="nomUser" value="#{inscrireBean.utilisateur.nom}" required="true" size="20" maxlength="20" />
+	        <p:message id="nomMessage" for="nomUser" errorClass="erreur" label="NomUser" requiredMessage="#{msg['inscription.nom']}"/>
+	        <br/></p>
+	        
+	        <div id="Type_Profile">
+                    
+                     <p:outputLabel for="listeProfile" value="Votre Profile" />
+        <p:selectOneMenu id="listeProfile" value="#{inscrireBean.utilisateur.profile.id}" style="width:125px"  >
+             
+             <f:selectItems value = "#{ profileBean.profiles.entrySet()}"  var ="profile" 
+                             filterBy="#{column.property}"
+                             
+                             itemValue="#{profile.key}" itemLabel="#{profile.value.name}" />   
+        </p:selectOneMenu>
+        
+        
+               </div>    
+               <br/>
+               
+               <div id="Type_Action">
+                    
+                     <p:outputLabel for="listeAction" value="Votre Role" />
+        <p:selectOneMenu id="listeAction" value="#{inscrireBean.utilisateur.user_Action.id}" style="width:125px"  >
+             
+             <f:selectItems value = "#{userActionBean.user_Actions.entrySet()}"  var ="action" 
+                             filterBy="#{column.property}"
+                             
+                             itemValue="#{action.key}" itemLabel="#{action.value.action}" />   
+        </p:selectOneMenu>
+        
+               </div>
+               <br/>
+	        
+	        <p:messages globalOnly="true" infoClass="info" />
+	
+	        <h:commandButton value="Valider" action="#{inscrireBean.modifier}"  />
+	         <h:commandButton  value="Remettre à zéro" action="#{inscrireBean.reset}"/>
+	        
+	        <br/>
+        </fieldset>
+    </h:form>
+    <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>

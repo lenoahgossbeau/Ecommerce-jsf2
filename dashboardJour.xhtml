@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      
+>
+<h:head>
+<meta charset="utf-8" />
+        <title>Tableau de board Journalier </title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+    <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+    
+<div>
+
+<p:messages globalOnly="true" infoClass="info" />
+    
+
+   </div> 
+    <div style="height:400px">
+  
+    
+    
+
+  <h:form id="tableau">
+  <p:messages globalOnly="true" infoClass="info" />
+  
+    <fieldset>
+   <legend>Selectioner la plage de votre recherche</legend> 
+   <h:panelGrid columns="5" cellpadding="5"> 
+      <h:outputLabel for="event"  value="Start Date: "/>
+         <p:calendar id="startDate" value="#{dashboardJourBean.startDate}"/>
+         <h:outputLabel for="event" value="End Date: " />
+        <p:calendar id="event" value="#{dashboardJourBean.endDate}"/>
+ <p:commandButton  value="Rechercher" action="#{dashboardJourBean.search}" renderDisabledClick="true">
+  <p:ajax event="click" render="@all"/>
+  </p:commandButton>
+		</h:panelGrid>
+         
+         
+               
+    </fieldset>
+  
+  
+   <fieldset id="dashboard">
+   <legend>Votre résultat selon la plage de votre recherche</legend> 
+   <h:panelGrid columns="5" columnClasses="left,right" style="width:100%" >
+ 
+        <p:chart type="pie" model="#{dashboardJourBean.pieModel3}"  style="width:600px;height:500px;font-weight: bold"  />
+        
+        <p:growl id="msgs" showDetail="true" />
+ 
+        <p:dashboard id="board" model="#{dashboardJourBean.model}" >
+            <p:ajax event="reorder" listener="#{dashboardJourBean.handleReorder}" update="msgs" />
+ 
+            <p:panel id="currentFund" header="Disponibilité théorique de la caisse " style="width:100%;height:75px;font-weight: bold;font: normal 10pt verdana">
+                <h:outputLabel value="#{dashboardJourBean.currentFund} FCFA " style="width:100%;height:75px;font-weight: bold;font: normal 10pt verdana"/>
+            </p:panel>
+            
+            <p:panel id="ReelFund" header="Disponibilité actuelle " style="width:100%;height:75px;font-weight: bold;font: normal 10pt verdana">
+                <h:outputLabel value="#{dashboardJourBean.currentReelFund} FCFA " style="font-weight: bold;font: normal 10pt verdana"/>
+            </p:panel>
+            
+            </p:dashboard>
+         </h:panelGrid>
+        <h:outputLabel styleClass="erreur" rendered="#{ empty dashboardJourBean.pieModel3 }" value="Aucune entrée."/>
+                 <p:dataTable value="#{ dashboardJourBean.pieModel3 }" var="jour" rendered="#{! empty dashboardJourBean.pieModel3 }"  style="width:100%;height:300%"   >
+            <p:columns style="width:100%;height:100px"><f:facet name="header"></f:facet></p:columns>
+           <p:column  style="font-weight: bold;font: bold 11pt verdana;color: #00BFFF"><f:facet  name="header" >Montant des Achats</f:facet><h:commandLink value ="#{dashboardJourBean.amountBuy} FCFA" style="font-weight: bold;font: bold 11pt verdana">  </h:commandLink></p:column>
+           <p:column style="font-weight: bold;font: bold 11pt verdana;color: #FFA500"><f:facet name="header"> Montant Fond de caisse</f:facet><h:commandLink value ="#{dashboardJourBean.dailyFund} FCFA" style="font-weight: bold;font: bold 11pt verdana">  </h:commandLink></p:column>
+           <p:column style="font-weight: bold;font: bold 11pt verdana;color: #BDB76B"><f:facet name="header">Montant des Dépots </f:facet><h:commandLink value ="#{dashboardJourBean.depositAccount} FCFA" style="font-weight: bold;font: bold 11pt verdana">  </h:commandLink></p:column>
+            <p:column style="font-weight: bold;font: bold 11pt verdana;color: #2E8B57"><f:facet name="header">Montant des Rétraits </f:facet><h:commandLink value ="#{dashboardJourBean.withdrawallAccount} FCFA" style="font-weight: bold;font: bold 11pt verdana">  </h:commandLink></p:column>
+                    </p:dataTable>
+                    
+                    
+                    <p:messages globalOnly="true" infoClass="info" />
+                    </fieldset>
+                 </h:form>
+                 </div>
+                 
+                 
+</h:body>
+</html>

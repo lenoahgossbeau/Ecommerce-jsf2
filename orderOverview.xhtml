@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">  
+    <h:head>
+   
+        <meta charset="utf-8" />
+        <title>Informations sur la commande</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+  
+    <h:body>
+        <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+   
+  <h:form id="buyPage">
+   <fieldset>
+   <p:messages globalOnly="true" infoClass="info" />
+   <legend>Details sur la commande</legend>
+        <div id="corps">
+            <p class="info">#{ form.resultat }</p>
+            
+            
+            <p><p:outputLabel for="nomClient" > Nom : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="nomClient"  value= "#{ commandeListBean.commande.customer.nom }" required="true" size="30" maxlength="30" />
+            <p:message id="nomMessage" for="nomClient" errorClass="erreur" label="nomClient" requiredMessage="#{msg['client.nom']}" />	        
+
+	          <br /></p>
+            <p><p:outputLabel for="prenomClient" > Prénom : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="prenomClient"  value= "#{ commandeListBean.commande.customer.prenom }" required="true" size="30" maxlength="30" />
+            <p:message id="prenomMessage" for="prenomClient" errorClass="erreur" label="prenomClient" requiredMessage="#{msg['client.prenom']}" />	        
+
+	          <br /></p>
+            <p><p:outputLabel for="adresseClient" > Adresse : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="adresseClient"  value= "#{ commandeListBean.commande.customer.adresse }" required="true" size="30" maxlength="30" />
+            <p:message id="adresseMessage" for="adresseClient" errorClass="erreur" label="adresseClient" requiredMessage="#{msg['client.adresse']}" />	        
+
+	          <br /></p>
+	          <p><p:outputLabel for="numeroDeTelephoneClient" > Numero de telephone : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="numeroDeTelephoneClient"  value= "#{ commandeListBean.commande.customer.telephone }" required="true" size="30" maxlength="30" />
+            <p:message id="numeroDeTelephoneMessage" for="numeroDeTelephoneClient" errorClass="erreur" label="numeroDeTelephoneClient" requiredMessage="#{msg['client.numeroDeTelephone']}" />	        
+
+	          <br /></p>
+	          <p><p:outputLabel for="emailClient" > Email : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="emailClient"  value= "#{ commandeListBean.commande.customer.email }" required="true" size="30" maxlength="30" />
+            <p:message id="emailMessage" for="emailClient" errorClass="erreur" label="emailClient" requiredMessage="#{msg['client.email']}" />
+            
+              <br /></p>
+            <p:outputLabel for="designationCommande"> Designation : </p:outputLabel>
+              <p:outputLabel id="designationCommande" value= "#{commandeListBean.commande.designation}" required="true" size="30" maxlength="30" />
+              <p:message id="designationCommandeMessage" for="designationCommande" errorClass="erreur" label="designationCommande" requiredMessage="#{msg['commande.designationCommande']}" />
+                    
+                    <br />
+                    
+            <p><p:outputLabel for="dateCommande" > Date : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="dateCommande"  value= "#{ commandeListBean.commande.date }" required="true" size="30" maxlength="30" />
+            <p:message id="dateMessage" for="dateCommande" errorClass="erreur" label="dateCommande" requiredMessage="#{msg['commande.date']}" />	        
+
+	          <br /></p>
+            <p>Montant  :xxxxxx</p>
+            
+	          <br />
+            <p><p:outputLabel for="modeDePaiementCommande" > Mode de paiement : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="modeDePaiementCommande"  value= "#{ commandeListBean.commande.modePaiement }" required="true" size="30" maxlength="30" />
+            <p:message id="modeDePaiementMessage" for="modeDePaiementCommande" errorClass="erreur" label="modeDePaiementCommande" requiredMessage="#{msg['commande.modeDePaiement']}" />	        
+
+	          <br /></p> 
+            <p><p:outputLabel for="statutDuPaiementCommande" > Statut du paiement : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="statutDuPaiementCommande"  value= "#{ commandeListBean.commande.statutPaiement }" required="true" size="30" maxlength="30" />
+            <p:message id="statutDuPaiementMessage" for="statutDuPaiementCommande" errorClass="erreur" label="statutDuPaiementCommande" requiredMessage="#{msg['commande.statutDuPaiement']}" />	        
+
+	          <br /></p>  
+            <p><p:outputLabel for="modeDeLivraisonCommande" > Mode de livraison : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="modeDeLivraisonCommande"  value= "#{ commandeListBean.commande.modeLivraison }" required="true" size="30" maxlength="30" />
+            <p:message id="modeDeLivraisonMessage" for="modeDeLivraisonCommande" errorClass="erreur" label="modeDeLivraisonCommande" requiredMessage="#{msg['commande.modeDeLivraison']}" />	        
+
+	          <br /></p>  
+            <p:outputLabel for="statutDeLivraisonCommande" > Statut de la livraison : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="statutDeLivraisonCommande"  value= "#{ commandeListBean.commande.statutLivraison }" required="true" size="30" maxlength="30" />
+            <p:message id="statutDeLivraisonMessage" for="statutDeLivraisonCommande" errorClass="erreur" label="statutDeLivraisonCommande" requiredMessage="#{msg['commande.statutDeLivraison']}" />	        
+
+	          <br />
+             
+              </div>
+              <ui:include src="/inc/itemOrderArticlesList.xhtml" />
+              <br />
+           </fieldset>
+           <center><p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px" onclick="print();">
+    <p:printer target="buyPage" />
+</p:commandButton></center>
+        
+                <br />
+                 <p:messages globalOnly="true" infoClass="info" />
+        </h:form>
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>

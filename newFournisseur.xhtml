@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	 xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+        <meta charset ="utf-8" />
+        <title>Fournisseur</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css"  />
+        <f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg"/> 
+    </h:head>
+    <h:body>
+       
+   <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+            <h:form id="fournisseur">
+            
+             <fieldset> <h1 align="center">Creation d'un fournisseur</h1></fieldset>
+            
+         <fieldset>
+          
+         	<legend> Nouveau fournisseur </legend>
+         	 <ui:include src="/inc/inc_fournisseur_form.xhtml" />
+	      
+	        <p class="info">${ form.resultat }</p>
+	               
+	                  <p:messages globalOnly="true" infoClass="info" />
+           <p:commandButton value="Valider" action="#{fournisseurBean.creerfournisseur}" />
+                 <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+            <br/>
+        </fieldset>
+        </h:form> 
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+         
+    </h:body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">  
+    <h:head>
+        <meta charset ="utf-8" />
+        <title>tYPE</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css"  />
+        <f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg"/> 
+    </h:head>
+    <h:body>
+       
+   <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+            <h:form id="type">
+            
+         <fieldset>
+          
+         	<legend> Type </legend>
+         	 <ui:include src="/inc/inc_type_form.xhtml" />
+	     	
+	        <p class="info">${ form.resultat }</p>
+	               
+	                  <h:messages globalOnly="true" infoClass="info" />
+           <p:commandButton value="Valider" action="#{typeBean.creertype}" />
+                <p:commandButton value="Remettre à zero" action="#{typeBean.reset}" />
+            <br/>
+        </fieldset>
+        </h:form> 
+        
+    </h:body>
+</html>

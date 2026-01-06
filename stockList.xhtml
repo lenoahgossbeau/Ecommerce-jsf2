@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+   
+        <meta charset="utf-8" />
+        <title>Liste des stocks existantes</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+       <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+        <fieldset> <h1 align="center">Liste des entrées en Stocks</h1></fieldset>
+       
+        <div id="corps">
+        <fieldset>
+                    <legend>Liste des Articles en Stock</legend>
+            <h:form>
+             
+           
+           <h:outputLabel styleClass="erreur" rendered="#{ empty stockListBean.stocks }" value="Aucun article enregistré en stock."/>
+               
+           <p:dataTable id="stocklist" value="#{ stockListBean.stocks }" var="stock" rendered="#{! empty stockListBean.stocks }"
+           paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+           paginator="true" rows="10"
+           style="margin-bottom:20px">
+           <f:facet name="{Exporters}">
+           
+            <h:commandLink>
+            
+                <p:graphicImage value ="/images/icons/pdf.png" width="24"/>
+                <p:dataExporter type="pdf" target="stocklist" fileName="stocks"/>
+            </h:commandLink>
+ 
+            <h:commandLink>
+                <p:graphicImage value ="/images/icons/xml.png" width="24"/>
+                <p:dataExporter type="xml" target="stocklist" fileName="stocks" />
+            </h:commandLink>
+            </f:facet>
+            
+           <p:column ><f:facet name="header"><h:outputText value="Date" /></f:facet><h:outputText value="#{stock.date}" /></p:column>
+           <p:column ><f:facet name="header"><h:outputText value="Description" /></f:facet><h:outputText value="#{stock.description}" /></p:column>
+           
+            <p:column ><f:facet name="header"><h:outputText value="Quantité" /></f:facet><h:outputText value="#{stock.quantité}" /></p:column>
+           <p:column rendered="#{configurationBean.admin}"><f:facet name="header">Supprimer</f:facet><p:commandButton action="#{stockListBean.supprimer(stock)}" value="Supprimer" /></p:column>
+           
+           
+          
+           
+                    </p:dataTable>
+           </h:form>
+           </fieldset>
+        </div>
+    </h:body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">  
+	
+    <h:head>
+        <meta charset ="utf-8" />
+        <title>Fond journalier</title>
+                <h:outputStylesheet library="default" name="css/ecommerce.css"  />
+        
+        <f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg"/> 
+    </h:head>
+    
+    <h:body>
+     <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+    
+    <fieldset> <h1 align="center"> Creation du fond journalier</h1></fieldset>
+      <h:form id="daily_Fund">
+         <fieldset>
+         
+         	
+	     	<p:outputLabel for="amountDaily_Fund"> Amount </p:outputLabel>
+<p:inputText id="amountDaily_Fund"  value= "#{daily_FundBean.daily_Fund.amount}" size="30" maxlength="60" /> FCFA
+<p:message id="amountMessage" for="amountDaily_Fund" errorClass="erreur" label="AmountDaily_Fund" requiredMessage="#{msg['fournisseur.nom1']}" />	        
+
+<br />
+	
+	      <p:outputLabel id="date"> Date </p:outputLabel>
+	        <p:inputText id="dateDaily_Fund"  value= "#{Daily_FundBean.daily_Fund.date}"  size="30"  maxlength="30" disabled="true" />
+	        <p:message id="dateMessage" for="date" errorClass="erreur" label="Date" requiredMessage="#{msg['commande.dateDaily_Fund']}" />
+	        <br />	
+	        
+	  
+	
+	                           <p:outputLabel for="descriptionDaily_Fund"> Description </p:outputLabel>
+                               <p:inputText id="descriptionDaily_Fund"  value= "#{daily_FundBean.daily_Fund.description}"  size="30" maxlength="30" />
+                               <p:message id="descriptionMessage" for="descriptionDaily_Fund" errorClass="erreur" label="DescriptionDaily_Fund" requiredMessage="#{msg['article.descriptionArticle']}" />	        
+
+                        <br />
+	        
+	        
+        
+	        
+	        <p:messages globalOnly="true" infoClass="info" />
+	
+	        <p:commandButton value="Enregistrer" action="#{daily_FundBean.creerfond}"  />
+             <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+	        
+	        <br/>
+          </fieldset>
+        </h:form> 	
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>

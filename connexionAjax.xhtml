@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+	<meta charset="utf-8" />
+	<title>Inscription</title>
+	<h:outputStylesheet library="default" name="css/inscription.css" />
+	<f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg" />
+</h:head>
+<h:body style="background-image: url('${request.contextPath}/inc/ecommerce.jpg');">
+	<h:form id="formulaire">
+		<p:fieldset legend="Inscription" style="margin-bottom:30%" id="inscriptionAjax">
+			<legend>Inscription</legend>
+			<p:outputLabel for="email">Adresse email <span
+					class="requis"></span>
+			</p:outputLabel>
+			<p:inputText id="email" value="#{inscrireBean.utilisateur.email}"
+				required="true" size="20" maxlength="60"
+				requiredMessage="#{msg['inscription.email']}">
+				<p:ajax event="blur" render="emailMessage" />
+			</p:inputText>
+			<p:message id="emailMessage" for="email" errorClass="erreur" />
+			<br />
+
+			<p:outputLabel for="motdepasse">Mot de passe <span
+					class="requis"></span>
+			</p:outputLabel>
+			<p:password id="motdepasse"
+				value="#{inscrireBean.utilisateur.motDePasse}" required="true"
+				size="20" maxlength="20"
+				requiredMessage="#{msg['inscription.motdepasse']}">
+				<p:ajax event="blur" render="motDePasseMessage" />
+			</p:password>
+			<p:message id="motDePasseMessage" for="motdepasse"
+				errorClass="erreur" />
+			<br />
+
+			<p:outputLabel for="confirmation">Confirmation du mot de passe <span
+					class="requis"></span>
+			</p:outputLabel>
+			<p:password id="confirmation"
+				value="#{inscrireBean.utilisateur.motDePasse}" required="true"
+				size="20" maxlength="20"
+				requiredMessage="#{msg['inscription.confirmation']}">
+				<p:ajax event="blur" render="confirmationMessage" />
+			</p:password>
+			<p:message id="confirmationMessage" for="confirmation"
+				errorClass="erreur" />
+			<br />
+
+			<p:outputLabel for="nom">Nom d'utilisateur <span
+					class="requis"></span>
+			</p:outputLabel>
+			<p:inputText id="nom" value="#{inscrireBean.utilisateur.nom}"
+				required="true" size="20" maxlength="20"
+				requiredMessage="#{msg['inscription.nom']}">
+				<p:ajax event="blur" render="nomMessage" />
+			</p:inputText>
+			<p:message id="nomMessage" for="nom" errorClass="erreur" />
+			<br />
+
+			<p:messages globalOnly="true" infoClass="info" />
+
+			<p:commandButton value="Inscription"
+				action="#{inscrireBean.inscrire}" styleClass="sansLabel">
+				
+				<p:ajax execute="@form" render="@form" />
+			</p:commandButton>
+			<p:commandLink value="Connexion"
+				action="#{connexion.xhtml}" styleClass="sansLabel">
+						<p:ajax execute="@form" render="@form" />
+			</p:commandLink>
+			<br />
+		</p:fieldset>
+	</h:form>
+	<div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+</h:body>
+</html>

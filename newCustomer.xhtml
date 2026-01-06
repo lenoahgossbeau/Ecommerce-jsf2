@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset ="utf-8" />
+        <title>Client</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css"  />
+        <f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg"/> 
+    </h:head>
+    <h:body>
+       
+   <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+   
+    <fieldset> <h1 align="center">Creation d'un nouveau client</h1></fieldset>
+            <h:form id="client">
+            
+         <fieldset>
+          
+         	<legend> Nouveau client </legend>
+         	 <ui:include src="/inc/inc_costumer_form.xhtml" />
+	     	
+	        <p class="info">${ form.resultat }</p>
+	               
+	                  <p:messages globalOnly="true" infoClass="info" />
+           <h:commandButton value="Valider" action="#{clientBean.creerclient}" />
+                 <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+            <br/>
+        </fieldset>
+        </h:form> 
+          <script>
+        	jQuery(document).ready(function(){
+        		/* 1 - Au lancement de la page, on cache le bloc d'éléments du formulaire correspondant aux clients existants */
+        		#("div#ancienClient").hide();
+        		/* 2 - Au clic sur un des deux boutons radio "choixNouveauClient", on affiche le bloc d'éléments correspondant (nouveau ou ancien client) */
+                jQuery('input[name=choixNouveauClient]:radio').click(function(){
+                	#("div#nouveauClient").hide();
+                	#("div#ancienClient").hide();
+                    var divId = jQuery(this).val();
+                    #("div#"+divId).show();
+                });
+            });
+        </script>
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>	
+    </h:body>
+</html>

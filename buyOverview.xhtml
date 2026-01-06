@@ -1,0 +1,82 @@
+
+ <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Affichage d'un buy</title>
+         <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+        <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+           
+   <h:form id="buyPage">
+   <fieldset>
+   <legend>Detail sur l'achat</legend>
+        <div id="corps">
+        
+            <p class="info">#{ form.resultat }</p>
+            
+    
+                
+            <p><p:outputLabel for="dateBuy" > Date de l'achat : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="dateBuy"  value= "#{ buyListBean.buy.date2 }" required="true" size="30" maxlength="30" />
+            <p:message id="dateMessage" for="dateBuy" errorClass="erreur" label="DateBuy" requiredMessage="#{msg['buy.date2']}" />	        
+
+	          <br /></p>
+	          
+            <p><p:outputLabel for="designationBuy" > Designation : <span class="requis">*</span></p:outputLabel>
+            <p:outputLabel id="designationBuy"  value= "#{ buyListBean.buy.designation }" required="true" size="30" maxlength="30" />
+            <p:message id="designationMessage" for="designationBuy" errorClass="erreur" label="designationBuy" requiredMessage="#{msg['buy.designation']}" />	        
+
+	          <br /></p>
+	          
+            <p><p:outputLabel for="quantitéBuy" > Quantité :  </p:outputLabel>
+            <p:outputLabel id="quantitéBuy"  value= "#{ buyListBean.buy.quantité }" required="true" size="30" maxlength="30" />
+            <p:message id="quantitéMessage" for="quantitéBuy" errorClass="erreur" label="quantitéBuy" requiredMessage="#{msg['buy.quantité']}" />	        
+
+	          <br /></p>
+	          
+            <p:outputLabel for="montantBuy" > Montant : </p:outputLabel>
+            <p:outputLabel id="montantBuy"  value= "#{ buyListBean.buy.montant }FCFA" required="true" size="30" maxlength="30" />
+            <p:message id="montantMessage" for="montantBuy" errorClass="erreur" label="MontantBuy" requiredMessage="#{msg['buy.montant']}" />	        
+
+	          <br />
+	          
+            <p:outputLabel for="amount_depositBuy" > Amount_Deposit : </p:outputLabel>
+            <p:outputLabel id="amount_depositBuy"  value= "#{ buyListBean.buy.amount_deposit }FCFA" required="true" size="30" maxlength="30" />
+            <p:message id="amount_depositMessage" for="amount_depositBuy" errorClass="erreur" label="Amount_depositBuy" requiredMessage="#{msg['buy.amount_deposit']}" />	        
+
+	          <br />
+        
+        
+        </div>
+        <ui:include src="/inc/itemOrderBuyedList.xhtml" />
+        <br />
+         
+        
+        
+          </fieldset>
+          <center><p:commandButton value="Print" type="button" icon="ui-icon-print" style="display:block;margin-bottom: 20px" onclick="print();">
+    <p:printer target="buyPage" />
+</p:commandButton></center>
+        
+                <br />
+                 <p:messages globalOnly="true" infoClass="info" />
+        </h:form>
+        <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>

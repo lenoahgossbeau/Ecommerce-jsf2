@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+   
+        <meta charset="utf-8" />
+        <title>Liste des utilisateurs enregistrés</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+       <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+    <fieldset> <h1 align="center">Liste des utilisateurs inscrits</h1></fieldset>
+    
+       
+        <div id="corps">
+        
+            <h:form>
+             
+           
+           <p:outputLabel styleClass="erreur" rendered="#{ empty userListBean.users }" value="Aucun utilisateur enregistré."/>
+               
+           <p:dataTable id="utilisateur"
+           value="#{ userListBean.users }" 
+           var="utilisateur" 
+           rendered="#{! empty userListBean.users }"  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}"
+ paginator="true" rows="10"
+ style="margin-bottom:20px">
+ 
+          
+            <p:column style="width: 30px; text-align: center" filterBy="#{utilisateur.email}" filterMatchMode="contains" >
+           <f:facet name="header"><h:outputText value="Email" /></f:facet><h:outputText value="#{utilisateur.email}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{utilisateur.motDePasse}" filterMatchMode="contains" >
+           <f:facet name="header"><h:outputText value="Mot de passe" /></f:facet><h:outputText value="#{utilisateur.motDePasse}" /></p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{utilisateur.nom}" filterMatchMode="contains" >
+           <f:facet name="header"><h:outputText value="Nom d'utilisateur" /> </f:facet><h:outputText value="#{utilisateur.nom}" /></p:column>
+           
+          <p:column style="width: 30px; text-align: center" filterBy="#{utilisateur.profile.name}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Profil" /></f:facet><h:outputText value="#{utilisateur.profile.name}"/>  </p:column>
+           
+           <p:column style="width: 30px; text-align: center" filterBy="#{utilisateur.user_Action.action}" filterMatchMode="contains">
+            <f:facet name="header"><h:outputText value="Action" /></f:facet><h:outputText value="#{utilisateur.user_Action.action}"/>  </p:column>
+           
+           <p:column style="width: 30px; text-align: center"><f:facet name="header"></f:facet><p:commandButton action="#{userListBean.detail(utilisateur)}" value="Detail" /></p:column> 
+            <p:column style="width: 30px; text-align: center" ><f:facet name="header"></f:facet><p:commandButton action="#{userListBean.modifier(utilisateur)}" value="Modifier" /></p:column> 
+           <p:column style="width: 30px; text-align: center" ><f:facet name="header"></f:facet><p:commandButton action="#{userListBean.supprimer(utilisateur)}" value="Supprimer" /></p:column>          
+           
+          
+           
+                    </p:dataTable>
+           </h:form>
+        </div>
+    </h:body>
+</html>

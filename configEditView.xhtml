@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Informations sur la configuration</title>
+       <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+        <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+   <h:form>
+    <fieldset>
+   <legend>Details sur la config</legend>
+        <div id="corps">
+        
+          <p>  <p:outputLabel for="idConfiguration">  Id <span class="requis">*</span></p:outputLabel>
+	         <p:inputText id="idConfiguration" value="#{configurationBean.configuration.id}" required="true"  size="20" disabled="true" maxlength="60" />
+	         <f:param name="idconfiguration" value="configurationBean.configuration.id"/>
+	        
+	       	      
+ <br /></p>
+             <p> <p:outputLabel for="keyConfiguration"> Key </p:outputLabel>
+             <p:inputText id="keyConfiguration"  value= "#{configurationBean.configuration.keyStr}" required="true" size="30" maxlength="30"  />
+             <p:message id="keyMessage" for="keyConfiguration" errorClass="erreur" label="KeyConfiguration" requiredMessage="#{msg['configuration.keyStr']}" />	        
+
+<br /></p>
+           <p><p:outputLabel for="valueConfiguration"> Value <span class="requis">*</span></p:outputLabel>
+            <p:inputText id="valueConfiguration"  value= "#{configurationBean.configuration.valueStr}" required="true" size="30" maxlength="30" />
+            <p:message id="valueMessage" for="valueConfiguration" errorClass="erreur" label="ValueConfiguration" requiredMessage="#{msg['configuration.valueStr']}" />	        
+
+
+<br /></p>
+       
+    </div>
+    <h:commandButton value="Valider" action="#{configurationBean.modifier}" />
+   
+    </fieldset> 
+    
+    </h:form>
+   
+    </h:body>
+</html>

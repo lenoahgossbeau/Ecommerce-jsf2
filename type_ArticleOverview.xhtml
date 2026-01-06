@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+    <h:head>
+        <meta charset="utf-8" />
+        <title>Affichage d'un type</title>
+        <link type="text/css" rel="stylesheet" href="/resources/default/css/ecommerce.css" />
+    </h:head>
+    <h:body>
+        <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+        <div id="corps">
+            <p class="info">#{ form.resultat }</p>
+            <p>Nom2 : <ui: value="#{ type_Article.nom2 }"/></p>
+            <p>Description : <ui: value="#{ type_Article.description }"/></p>
+            
+          
+        </div>
+    </h:body>
+</html>

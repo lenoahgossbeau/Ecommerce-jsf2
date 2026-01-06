@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"> 
+
+<h:head>
+   
+        <meta charset="utf-8" />
+        <title>Liste des type de Buys </title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css" />
+    </h:head>
+    <h:body>
+    <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+                   
+   
+   </h:form>
+   
+   <div id="corps">
+        
+            <h:form>
+            <h:outputLabel styleClass="erreur" rendered="#{ empty type_BuyListBean.type_Buy }" value="Aucune type_Buy enregistrée."/>
+               
+            
+            
+            <h:dataTable value="#{ type_BuyListBean.type_Buy }" var="type" rendered="#{! empty type_BuyListBean.type_Buy }">
+           
+            <h:column ><f:facet name="header">Code</f:facet>#{type_Buy.strCode}</h:column>
+            <h:column><f:facet name="header">Description</f:facet>#{type_Buy.description}</h:column>
+            
+            <h:column><f:facet name="header">Supprimer</f:facet><h:commandButton action="#{type_BuyListBean.supprimer(type_Buy)}" value="Supprimer" /></h:column>
+           
+            </h:dataTable>
+            
+               
+            
+       </h:form>
+        </div>
+        
+    </h:body>
+</html>

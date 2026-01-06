@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"> 
+    <h:head>
+        <meta charset ="utf-8" />
+        <title>Entree</title>
+        <h:outputStylesheet library="default" name="css/ecommerce.css"  />
+        <f:loadBundle basename="cm.itac.formation.ecommerce.bundle.messages_it" var="msg"/> 
+    </h:head>
+    <h:body>
+       	 
+   <h:form id="menuForm">
+  
+                        <ui:include src ="/inc/menu.xhtml"  />
+   </h:form>
+   
+    <fieldset> <h1 align="center">Opération d'entrée</h1></fieldset>
+   
+         <h:form id="entree">
+         <fieldset>
+                    <legend> Specification de l'entrée </legend>
+     				
+                        
+             <div id="Type_Entree">
+                    
+        <p:outputLabel for="listeType_Entrees" value="Selectioner le type d'entree" />
+        <p:selectOneMenu id="listeType_Entrees" value="#{entreeBean.typeType_Entree}" style="width:125px"  >
+             <f:ajax event="valueChange" listener="#{articleListBean.handleChange}" render="entree" />
+             <f:selectItems value = "#{ type_EntreeBean.type_Entrees.entrySet()}"  var ="type_Entree" 
+                             filterBy="#{column.property}"                             
+                             itemValue="#{type_Entree.key}" itemLabel="#{type_Entree.value.type}" />   
+        </p:selectOneMenu>
+        
+               </div>        
+         </fieldset>
+           <fieldset>
+           
+         	<legend> Entree </legend>
+         	 <ui:include src="/inc/inc_entree_form.xhtml" />
+         	  <ui:include  src="/inc/itemArticlesList.xhtml" />
+	 
+                      	               
+	                     <p:messages globalOnly="true" infoClass="info" />
+                         <p:commandButton value="Valider" action="#{entreeBean.creerEntree}" />
+                                  
+                         <p:commandButton id="btn_reset" value="Reset" type="reset"/>
+               
+            
+            <br/>
+        
+         </fieldset>
+    </h:form>
+         
+         <div id="footer">
+        
+          Copyright © 2018 I.T. Africa Consulting. All Rights Reserved. I.T. Africa Consulting
+          </div>
+    </h:body>
+</html>
