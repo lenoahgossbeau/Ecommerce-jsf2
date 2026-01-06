@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<persistence version="2.0" 
+xmlns="http://java.sun.com/xml/ns/persistence" 
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+ xsi:schemaLocation="http://java.sun.com/xml/ns/persistence  
+ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"> 
+    <persistence-unit name="ecommerce_PU" transaction-type="JTA"> 
+        <jta-data-source>jdbc/bonecp_resource</jta-data-source> 
+        <class>cm.itac.formation.ecommerce.dao.entity.User</class> 
+        <class>cm.itac.formation.ecommerce.dao.entity.Customer</class>
+        <class>cm.itac.formation.ecommerce.dao.entity.Order</class>
+        <class>cm.itac.formation.ecommerce.dao.entity.Article</class>
+         <class>cm.itac.formation.ecommerce.dao.entity.Fournisseur</class>
+         <class>cm.itac.formation.ecommerce.dao.entity.Stock</class>
+         <class>cm.itac.formation.ecommerce.dao.entity.Shop</class>
+         <class>cm.itac.formation.ecommerce.dao.entity.Type</class>
+         <class>cm.itac.formation.ecommerce.dao.entity.Entré</class>
+         <class>cm.itac.formation.ecommerce.dao.entity.Sortir</class>
+         <class>cm.itac.formation.ecommerce.dao.entity.Buy</class>
+         <class>cm.itac.formation.ecommerce.dao.entity.Contact</class>
+        <properties/>     
+    </persistence-unit>    
+</persistence>
